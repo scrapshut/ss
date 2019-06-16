@@ -19,8 +19,8 @@ def post_list(request):
     return render(request, 'posts/post_list.html', context)
 
 
-def post_detail(request, id, slug):
-    psts = get_object_or_404(Post, id=id, slug=slug)
+def post_detail(request, id):
+    psts = get_object_or_404(Post, id=id)
     is_liked = False
     if psts.likes.filter(id=request.user.id).exists():
         is_liked = True
@@ -32,8 +32,10 @@ def post_detail(request, id, slug):
     return render(request, 'posts/post_detail.html', context)
 
 
-def like_post(request):
-    psts = get_object_or_404(Post, id=request.POST.get('psts_id'))
+def like_post(request,id):
+    # id=request.POST.get('psts_id')
+    # id=float(id)
+    psts = get_object_or_404(Post, id=id)
     is_liked = False
     if psts.likes.filter(id=request.user.id).exists():
         psts.likes.remove(request.user)
@@ -41,7 +43,8 @@ def like_post(request):
     else:
         psts.likes.add(request.user)
         is_liked = True
-    return HttpResponseRedirect(psts.get_absolute_url())
+    return HttpResponse('ok this is awesome')
+    # return HttpResponseRedirect()
 
 
 def post_create(request):
