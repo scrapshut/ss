@@ -72,7 +72,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'scrapshut.wsgi.application'
+WSGI_APPLICATION = '.wsgi.application'
 
 
 # Database
