@@ -75,13 +75,14 @@ WSGI_APPLICATION = 'scrapshut.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}
+# SECRET_KEY = config('SECRET_KEY')
+# DEBUG = config('DEBUG', default=True, cast=bool)
+DATABASES = {'default': dj_database_url.config()}
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=config('DATABASE_URL')
+#     )
+# }
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
