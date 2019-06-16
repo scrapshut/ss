@@ -1,1 +1,2 @@
-web : gunicorn scrapshut.wsgi -b 0.0.0.0:$PORT
+web: gunicorn scrapshut.wsgi --log-file -
+web: python manage.py runserver 0.0.0.0:$PORT
