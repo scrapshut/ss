@@ -79,11 +79,13 @@ WSGI_APPLICATION = 'scrapshut.wsgi.application'
 # SECRET_KEY = config('SECRET_KEY')
 # DEBUG = config('DEBUG', default=True, cast=bool)
 # DATABASES = {'default': dj_database_url.config()}
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}
+prod_db  =  dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=config('DATABASE_URL')
+#     )
+# }
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
