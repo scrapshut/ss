@@ -1,30 +1,41 @@
 {% extends 'posts/base.html' %}
 {% block title %}Welcome to {{block.super}}{% endblock %}
 {% block content %}
+
 <div class="row">
+
         {% for p in pst %}
-        <div class="col-md-6">
-            <div class="img-thumbnail">
-                <a href="{% url 'posts:post_detail' p.id %}">{{p.title}}</a><small style="float:right">{{p.created}}</small>
-                            <!-- {{total_likes}} Like{{total_likes|pluralize}} -->
 
-                            {% if request.user.is_authenticated %}
+        <div class="cards-list">
 
-                            <form action="{% url 'posts:like_post' p.id %}" method="post">
-                                {% csrf_token %}
-                                {% if is_liked %}
-                                <button type="submit" name="psts_id" value="{{p.id}}" class="btn btn-danger">Dislike</button>
-                                {% else %}
-                                <button type="submit" name="psts_id" value="{{p.id}}" class="btn btn-primary">Like</button>
-                                {% endif %}
-                            </form>
-                            {% endif %}<br>
-                Author: {{p.author}} <br>
-                {{p.body}}
+        <div class="card 1">
+          <div class="card_image"> <img src="https://i.redd.it/b3esnz5ra34y.jpg" />  Author: {{p.author}} <br>
+            {{p.body}}
+              <a href="{% url 'posts:post_detail' p.id %}">{{p.title}}</a><small style="float:right">{{p.created}}</small>
            </div>
-            <br>
+          <div class="card_title title-white">
+            {% if request.user.is_authenticated %}
+
+            <p>
+              <form action="{% url 'posts:like_post' p.id %}" method="post">
+                  {% csrf_token %}
+                  {% if is_liked %}
+                  <button type="submit" name="psts_id" value="{{p.id}}" class="btn btn-danger">Dislike</button>
+                  {% else %}
+                  <button type="submit" name="psts_id" value="{{p.id}}" class="btn btn-primary">Like</button>
+                  {% endif %}
+              </form>
+
+              {% endif %}<br>
+
+            </p>
+          </div>
         </div>
         {% endfor %}
+
+
+
+
 
 
 </div>
