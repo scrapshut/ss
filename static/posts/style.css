@@ -4,5 +4,7 @@ min-height: 100%;
 }
 
 body {
-font-family: 'Comic Sans MS';
+  font-family: "Avenir Next", "Helvetica Neue", Arial,-apple-system, Roboto, sans-serif;
+body padding-top: 70px;
+
 }
