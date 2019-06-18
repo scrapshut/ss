@@ -1,19 +1,66 @@
 {% extends 'posts/base.html' %}
 {% block content %}
 {% load staticfiles%}
-<div class="something">
-  <link rel="stylesheet" href="{% static 'accounts/css/accounts.css' %}">
 
-  <!-- <form method="post">
-      {% csrf_token %}
-      {{form.as_p}}
-      <small>
-          <a href="{% url 'accounts:register' %}">Register</a>
-          <a href="{% url 'accounts:password_reset' %}">Forgot Password?</a>
-      </small>
-      <br>
-      <input type="submit" value="Login" class="btn btn-outline-success">
-  </form> -->
+
+
+<!-- <form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Submit" class="btn btn-outline-success">
+</form> -->
+<!-- 'username',
+    'first_name',
+    'last_name',
+    'email', -->
+<!--
+<div class="container">
+    <div class="columns is-mobile">
+        <div class="column is-half is-offset-one-quarter">
+            <h3 class="title is-size-3">Login</h3>
+            <form action="{% url 'accounts:register' %}" method="post">
+                {% csrf_token %}
+                {% for non_field_error in form.non_field_errors %}
+                    <p class="help is-danger">{{ non_field_error }}</p>
+                {% endfor %}
+                {% for field in form %}
+                    <div class="field">
+                        <label for="{{ field.id_for_label }}" class="label">{{ field.html_name }}</label>
+                        {{ field }}
+                    {% for error in field.errors %}
+                        <p class="help is-danger">{{ error }}</p>
+                    {% endfor %}
+                    </div>
+                {% endfor %}
+                <input type="submit" value="SIGN IN" class="button is-primary">
+            </form>
+        </div>
+    </div>
+</div> -->
+
+
+  <link rel="stylesheet" href="{% static 'accounts/css/accounts.css' %}">
+<!-- <form method="post">
+  {% csrf_token %}
+
+  {{form.username}}
+  {{form.password}}
+  <input type="submit" value="Login" class="btn btn-outline-success">
+</form> -->
+
+
+<!-- <form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <small>
+        <a href="{% url 'accounts:register' %}">Register</a>
+        <a href="{% url 'accounts:password_reset' %}">Forgot Password?</a>
+    </small>
+    <br>
+    <input type="submit" value="Login" class="btn btn-outline-success">
+</form>  -->
+
+<div class="something">
 
 
   <div class="iphone_x center shadow big_container">
@@ -166,25 +213,30 @@
               <div id="login_page" class="iphone_x center">
 
                   <div class="content_container">
+<form  method="post">
+  {% csrf_token %}
 
-                      <div class="title_text">Welcome</div>
+  <div class="title_text">Welcome</div>
 
-                      <div class="input_line">
+  <div class="input_line">
 
-                          <input class="input_content" id="email_log" type="text" required autofocus />
-                          <label for="email">Email</label>
-                      </div>
-                      <div class="input_line">
+      <input class="input_content" id="email_log" type="text" required autofocus {{form.username }}
+      <label for="email">Email</label>
 
-                          <input class="input_content" id="pass" type="password" required />
-                          <label for="pass">Password</label>
-                      </div>
-                      <div class="forget">Forget Password?</div>
+  </div>
+  <div class="input_line">
 
+      <input class="input_content" id="pass" type="password" required {{ form.password }}
+      <label for="pass">Password</label>
+  </div>
+  <div class="forget">Forget Password?</div>
 
-                      <button class="btn sign_up">
-                          <span>Log in</span>
-                      </button>
+<!-- <input class="btn btn-outline-success"> -->
+  <button class="btn sign_up" type="submit" value="Login" >
+      <span>Log in</span>
+  </button>
+</form>
+
                       <div class="divider">
                           <hr><span>Or</span>
                           <hr>
@@ -213,32 +265,47 @@
               <div id="signup_page" class="iphone_x center">
 
                   <div class="content_container">
+<form method="post">
+  {% csrf_token %}
 
-                      <div class="title_text">Let's get start</div>
-                      <div class="input_line">
+  <div class="title_text">Let's get start</div>
+  <div class="input_line">
 
-                          <input class="input_content" id="user" type="text" required value="Lauren Nelson" />
-                          <label for="user">Username</label>
-                      </div>
-                      <div class="input_line">
+      <input class="input_content" id="user" type="text" required value="Lauren Nelson" {{form.username}}
+      <label for="user">Username</label>
+  </div>
+  <div class="input_line">
 
-                          <input class="input_content" id="email_sign" type="text" required autofocus />
-                          <label for="email">Email</label>
-                      </div>
-                      <div class="input_line">
+      <input class="input_content" id="user" type="text" required value="Lauren Nelson" {{form.first_name}}
+      <label for="user">first name</label>
+  </div>
+  <div class="input_line">
 
-                          <input class="input_content" id="pass" type="password" required />
-                          <label for="pass">Password</label>
-                      </div>
-                      <div class="input_line">
+      <input class="input_content" id="user" type="text" required value="Lauren Nelson" {{form.last_name}}
+      <label for="user">last name</label>
+  </div>
+  <div class="input_line">
 
-                          <input class="input_content" id="c_pass" type="password" required />
-                          <label for="c_pass">Confirm Password</label>
-                      </div>
+      <input class="input_content" id="email_sign" type="text" required autofocus {{forms.email}}
+      <label for="email">Email</label>
+  </div>
+  <div class="input_line">
 
-                      <button class="btn sign_up">
-                          <span>Sign up</span>
-                      </button>
+      <input class="input_content" id="pass" type="password" required {{forms.password}}
+      <label for="pass">Password</label>
+  </div>
+  <div class="input_line">
+
+      <input class="input_content" id="c_pass" type="password" required {{forms.confirm_password}}
+      <label for="c_pass">Confirm Password</label>
+  </div>
+  <input type="submit" value="Submit" class="btn btn-outline-success">
+
+  <button class="btn sign_up">
+      <span>Sign up</span>
+  </button>
+</form>
+
                       <div class="divider">
                           <hr><span>Or</span>
                           <hr>

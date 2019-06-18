@@ -14,8 +14,8 @@ class PostCreateForm(forms.ModelForm):
 
 
 class UserLoginForm(forms.Form):
-    username=forms.CharField(label="")
-    password=forms.CharField(label="", widget=forms.PasswordInput)
+    username=forms.CharField(label="",widget=forms.TextInput(attrs={'type': 'text', 'id':'register-form-name', 'name':'register-form-name', 'value':"", 'class':'form-control'}))
+    password=forms.CharField(label="",widget=forms.TextInput(attrs={'type': 'password', 'id':'register-form-name', 'name':'register-form-name', 'value':"", 'class':'form-control'}))
 
 
 class UserRegistrationForm(forms.ModelForm):
