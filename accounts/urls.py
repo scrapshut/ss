@@ -19,9 +19,14 @@ from django.urls import path
 from django.conf.urls import url
 from django.contrib.auth import views as auth_views
 from accounts import views
+# from django.contrib.auth import views as auth_views,login,logout
+
 app_name = 'accounts'
 
+
 urlpatterns = [
+     # url(r'^login/$', auth_views.login, {'template_name': 'posts/login.html'}, name='login'),
+
 
     url(r'login/$', views.user_login, name="user_login"),
     url(r'logout/$', views.user_logout, name="user_logout"),

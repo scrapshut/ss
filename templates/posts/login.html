@@ -2,6 +2,7 @@
 {% block content %}
 {% load staticfiles%}
 
+<!-- <a href="{% url 'social:begin' 'twitter' %}">Login with Twitter</a> -->
 
 
 <!-- <form method="post">
@@ -251,8 +252,10 @@
                                       id="" fill="#FE9F08" fill-rule="nonzero"></path>
                               </g>
                           </svg>
+                          <a href = "{% url 'social:begin' 'twitter' %}">
+                                 <span>Log in with Google</span>
+                          </a>
 
-                          <span>Log in with Google</span>
                       </button>
                       <div class="footer_line">
                           <span class="footer_text">Don’t have an account?</span>

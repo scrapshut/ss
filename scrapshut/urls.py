@@ -23,6 +23,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     url(r'', include('posts.urls',namespace="posts")),
+    url(r'^oauth/', include('social_django.urls',namespace = 'social')),
+
+    # url('', include('social.apps.django_app.urls', namespace='social')),
+
 
     url(r'accounts/', include('accounts.urls',namespace="accounts"))
 
