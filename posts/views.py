@@ -21,6 +21,8 @@ def post_list(request):
 
 def post_detail(request, id):
     psts = get_object_or_404(Post, id=id)
+    psts.view_count +=1
+    psts.save()
     comments = Comment.objects.filter(psts=psts, reply=None).order_by('-id')
     is_liked = False
     if psts.likes.filter(id=request.user.id).exists():

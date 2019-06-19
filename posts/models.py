@@ -28,7 +28,7 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now=False,auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
-
+    view_count = models.PositiveIntegerField(default=0)
     def __str__(self):
         return self.title
 
