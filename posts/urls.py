@@ -28,7 +28,7 @@ urlpatterns = [
 
     #url('home', views.post_list, name="post_list"),
     url(r'^posts/(?P<id>\d+)/$',views.post_detail, name="post_detail"),
-        # url(r'^posts/(?P<id>\d+)/(?P<slug>[\w-]+)/$',views.post_detail, name="post_detail"),
+    #url(r'^posts/(?P<id>\d+)/(?P<slug>[\w-]+)/$',views.post_detail, name="post_detail"),
 
     url(r'post_create/$', views.post_create, name="post_create"),
 

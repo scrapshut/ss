@@ -1,4 +1,4 @@
-from .models import Post
+from .models import Post, Comment
 from django import forms
 from django.contrib.auth.models import User
 
@@ -38,3 +38,10 @@ class UserRegistrationForm(forms.ModelForm):
             raise forms.ValidationError("Passwords mismatch!")
 
         return confirm_password
+
+
+class CommentForm(forms.ModelForm):
+    content = forms.CharField(label="", widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Its easy to pass comment, but yeah you can!', 'rows': '2', 'cols': '50'}))
+    class Meta:
+        model = Comment
+        fields = ('content',)
