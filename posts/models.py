@@ -6,6 +6,8 @@ from django.utils.text import slugify
 from django.urls import reverse
 # Create your models here.
 from django.db.models import CharField
+from django.conf import settings
+
 
 
 class PublishedManager(models.Manager):
@@ -22,7 +24,7 @@ class Post(models.Model):
     )
     title = models.CharField(max_length=100,default='')
     slug = models.SlugField(max_length=120,default='')
-    author = models.ForeignKey(User, related_name="blog_posts", on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="blog_posts", on_delete=models.CASCADE)
     body = models.TextField()
     likes = models.ManyToManyField(User, related_name='likes', blank=True)
     created = models.DateTimeField(auto_now=False,auto_now_add=True)

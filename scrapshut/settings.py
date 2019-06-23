@@ -14,6 +14,9 @@ import os
 import dj_database_url
 import dj_database_url
 import django_heroku
+# from scrapshut import routing
+# from django.conf import settings
+# from notifier import routing
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
@@ -22,17 +25,23 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-st5jfrgd!x5%r6t9z6danja$ty56b65f=1a%2(h7$@_g0^@d2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+AUTH_USER_MODEL = 'accounts.UserProfile'
+
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+SECRET_KEY = '-st5jfrgd!x5%r6t9z6danja$ty56b65f=1a%2(h7$@_g0^@d2'
+
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,7 +51,7 @@ INSTALLED_APPS = [
 
     'posts',
     'accounts',
-    'social_django'
+    'social_django',
     # 'social.apps.django_app.default',
 
 ]
@@ -99,6 +108,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'scrapshut.wsgi.application'
 
+ASGI_APPLICATION = 'scrapshut.routing.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases

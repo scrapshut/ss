@@ -1,0 +1,23 @@
+{% load static %}
+
+{%   block  content   %}
+   <h2> NEW   USER </ h2>
+   <table  class = "table"\>
+     <thead>
+       <tr>
+
+<th>usernme</th>
+<th>firstnme</th>
+<th>lstname</th>
+<th>eamil</th>
+       </tr >
+
+     </thead>
+     <tbody  id = "new_user">
+       {%   include   "notifier/users.html"   %}
+     </tbody >
+   </table >
+
+       <script  src = "{% static 'websocket/js/reconnecting-websocket.min.js' %}"></s cript >
+     <script  src = "{% static 'websocket/js/new_user.js' %}"></script >
+ {%   endblock   %}

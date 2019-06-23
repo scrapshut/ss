@@ -28,6 +28,8 @@ urlpatterns = [
     # url('', include('social.apps.django_app.urls', namespace='social')),
 
 
-    url(r'accounts/', include('accounts.urls',namespace="accounts"))
+    url(r'accounts/', include('accounts.urls',namespace="accounts")),
+    url(r'notifier/', include('notifier.urls',namespace="notifier"))
+
 
 ]
