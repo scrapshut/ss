@@ -12,9 +12,6 @@
           <div class="card_image"> <img src="https://i.redd.it/b3esnz5ra34y.jpg" />  Author: {{p.author}} <br>
             {{p.body}}
               <a href="{% url 'posts:post_detail' p.id %}">{{p.title}}</a><small style="float:right">{{p.created}}</small>
-              <br>
-                <p <i class="far fa-eye mr-2"></i> {{p.view_count}}  Views
-                </p><br>
            </div>
           <div class="card_title title-white">
             {% if request.user.is_authenticated %}
