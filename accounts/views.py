@@ -27,8 +27,16 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
+####follow
+from django.contrib.auth import authenticate, get_user_model, login
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect, render
+from django.urls import reverse
+
 from .forms import ProfileForm
 from .models import UserProfile
+
+
 
 # Create your views here.
 
@@ -114,7 +122,11 @@ def activate(request, uidb64, token):
         #return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
         return render(request, 'posts/confirmed.html')
     else:
+
         return HttpResponse('Activation link is invalid!')
+
+
+
 
 @login_required
 def profile(request, username):

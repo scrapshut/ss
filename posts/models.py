@@ -26,7 +26,7 @@ class Post(models.Model):
     slug = models.SlugField(max_length=120,default='')
     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="blog_posts", on_delete=models.CASCADE)
     body = models.TextField()
-    likes = models.ManyToManyField(User, related_name='likes', blank=True)
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='likes', blank=True)
     created = models.DateTimeField(auto_now=False,auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
@@ -58,8 +58,8 @@ def pre_save_slug(sender, **kwargs):
 
 
 class Comment(models.Model):
-    psts = models.ForeignKey(Post,on_delete=models.CASCADE)
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    psts = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='com')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='use')
     reply = models.ForeignKey('Comment', null=True, related_name="replies", on_delete=models.CASCADE)
     content = models.TextField(max_length=160, default="")
     timestamp = models.DateTimeField(auto_now_add=True)
