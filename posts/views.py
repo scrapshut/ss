@@ -18,7 +18,6 @@ def post_list(request):
     }
     return render(request, 'posts/post_list.html', context)
 
-
 def post_detail(request, id):
     psts = get_object_or_404(Post, id=id)
     comments = Comment.objects.filter(psts=psts, reply=None).order_by('-id')

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  Thong bao khi new user
+{% endblock title %}
+
+{% block content %}
+  <h2>NEW USER</h2>
+  <p>Tự động cập nhật thông tin người dùng khi người dùng chỉnh sửa thông tin hoặc đăng ký.</p>            
+  <table class="table">
+    <thead>
+      <tr>
+        <th>username</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody id="new_user">
+      {% include "includes/users.html" %}
+    </tbody>
+  </table>
+{% endblock content %}
+
+<!-- NEW -->
+{% block scripts %}
+	<script src="{% static "js/channels/reconnecting-websocket.min.js" %}"></script>
+	<script src="{% static "js/channels/new_user.js" %}"></script>
+{% endblock scripts %}

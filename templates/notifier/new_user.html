@@ -1,23 +1,29 @@
 {% load static %}
 
-{%   block  content   %}
-   <h2> NEW   USER </ h2>
-   <table  class = "table"\>
-     <thead>
-       <tr>
+{% block title %}
+  Thong bao khi new user
+{% endblock title %}
 
-<th>usernme</th>
-<th>firstnme</th>
-<th>lstname</th>
-<th>eamil</th>
-       </tr >
+{% block content %}
+  <h2>NEW USER</h2>
+  <p>Tự động cập nhật thông tin người dùng khi người dùng chỉnh sửa thông tin hoặc đăng ký.</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>username</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody id="new_user">
+      {% include "notifier/users.html" %}
+    </tbody>
+  </table>
+    {% block script %}
 
-     </thead>
-     <tbody  id = "new_user">
-       {%   include   "notifier/users.html"   %}
-     </tbody >
-   </table >
-
-       <script  src = "{% static 'websocket/js/reconnecting-websocket.min.js' %}"></s cript >
+       <script  src = "{% static 'websocket/js/reconnecting-websocket.min.js' %}"></script >
      <script  src = "{% static 'websocket/js/new_user.js' %}"></script >
+       {% endblock script %}
+
  {%   endblock   %}

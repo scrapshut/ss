@@ -28,7 +28,9 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 AUTH_USER_MODEL = 'accounts.User'
+# AUTH_USER_MODEL = 'users.User'
 
+# settings.AUTH_USER_MODEL
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -71,6 +73,7 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.google.GoogleOAuth2',
     'social.backends.twitter.TwitterOAuth',
     'django.contrib.auth.backends.ModelBackend',
+
 )
 
 MIDDLEWARE = [
@@ -114,7 +117,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts": [('127.0.0.1', 16379)],
         },
     },
 }

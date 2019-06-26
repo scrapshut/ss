@@ -58,7 +58,7 @@ def pre_save_slug(sender, **kwargs):
 
 
 class Comment(models.Model):
-    psts = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='com')
+    psts = models.ForeignKey(Post,on_delete=models.CASCADE,related_name='com')
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='use')
     reply = models.ForeignKey('Comment', null=True, related_name="replies", on_delete=models.CASCADE)
     content = models.TextField(max_length=160, default="")

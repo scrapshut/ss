@@ -29,7 +29,7 @@ urlpatterns = [
 
 
     url(r'accounts/', include('accounts.urls',namespace="accounts")),
-    url(r'notifier/', include('notifier.urls',namespace="notifier"))
+    url(r'notifier', include('notifier.urls',namespace="notifier"))
 
 
 ]

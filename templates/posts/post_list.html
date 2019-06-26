@@ -1,12 +1,18 @@
 {% extends 'posts/base.html' %}
+{% load static %}
 {% block title %}Welcome to {{block.super}}{% endblock %}
 {% block content %}
+<link href="{% static 'assets/css/material-kit.css' %}" rel="stylesheet" />
+
+<!-- <div class="container"> -->
+
+<div class="d-flex justify-content-center">
 
 <div class="row">
 
         {% for p in pst %}
 
-        <div class="cards-list">
+        <!-- <div class="cards-list">
 
         <div class="card 1">
           <div class="card_image"> <img src="https://i.redd.it/b3esnz5ra34y.jpg" />  Author: {{p.author}} <br>
@@ -30,13 +36,74 @@
 
             </p>
           </div>
+        </div> -->
+
+        <!-- <div class="row"> -->
+  <!-- <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Regular header</h4>
+        <p class="category">Category subtitle</p>
+      </div>
+      <div class="card-body">
+        The place is close to Barceloneta Beach and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the main night life in Barcelona...
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card">
+        <div class="card-header card-header-danger">
+            <h4 class="card-title">Full header coloured</h4>
+            <p class="category">Category subtitle</p>
         </div>
+        <div class="card-body">
+              The place is close to Barceloneta Beach and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the main night life in Barcelona...
+        </div>
+    </div>
+  </div> -->
+
+
+
+  <!-- <div class="col-md-12"> -->
+  <div class="container">
+    <!-- <div class="col-sm"> -->
+                <div class="row">
+                  <!-- <div class="col-md-6"> -->
+                  <div class="col">
+
+                    <div class="card">
+                      <div class="card-header">
+                        <h4 class="card-title"><a href="{% url 'posts:post_detail' p.id %}">{{p.title}}</a><small style="float:right">{{p.created}}</small></h4>
+                        <p class="category"> Author: {{p.author}}</p>
+                      </div>
+                      <div class="card-body">
+                        {{p.body}}
+                      </div>
+                      <form action="{% url 'posts:like_post' p.id %}" method="post">
+                          {% csrf_token %}
+                          {% if is_liked %}
+                          <button type="submit" name="psts_id" value="{{p.id}}" class="btn btn-danger">Dislike</button>
+                          {% else %}
+                          <button type="submit" name="psts_id" value="{{p.id}}" class="btn btn-primary">Like</button>
+                          {% endif %}
+                      </form>
+                    </div>
+
+                  </div>
+                  </div>
+</div>
+</div>
+</div>
+
+
         {% endfor %}
 
 
 
 
-
-
 </div>
+</div>
+</div>
+
 {% endblock %}
