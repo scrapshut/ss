@@ -111,6 +111,8 @@ Dropdown link
         <li class="nav-item">
           <a class="nav-link" href="#">Pricing</a>
         </li>
+        {% if request.user.is_authenticated %}
+
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span>Hey {{ request.user|capfirst }}</span>
@@ -118,10 +120,15 @@ Dropdown link
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" href="{% url 'accounts:user_logout' %}">Logout</a>
             <a class="dropdown-item" href="{% url 'posts:post_create' %}">Create Post</a>
-            <a class="dropdown-item" href="{% url 'accounts:profile' request.user %}">Logout</a>
+            <a class="dropdown-item" href="{% url 'accounts:profile' request.user %}">Profile</a>
           </div>
         </li>
       </ul>
+      {% else %}
+      <li class="nav-item">
+        <a href="{% url 'accounts:user_login' %}" class="nav-link">Login</a>
+      </li>
+      {% endif %}
     </div>
     <form class="form-inline ml-auto">
         <input class="form-control" type="search" placeholder="Search" aria-label="Search" name='q'>

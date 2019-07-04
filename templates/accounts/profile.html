@@ -1,6 +1,8 @@
-{% load static %}
 
-<div class="card">
+{% load static %}
+<link rel="stylesheet" href="{% static 'accounts/css/profile.css' %}">
+
+<!-- <div class="card">
 	{% if user.profile.picture %}
 		<img class="card-img-top" src='{{ user.profile.picture.url }}'>
 	{% else %}
@@ -26,7 +28,7 @@
 			<a href="{% url 'accounts:edit_profile' %}" class="card-link btn btn-danger">Edit Profile</a>
 		</div>
 	{% endif %}
-</div>
+</div> -->
 
 
 
@@ -49,57 +51,6 @@
 
 
 <body class="profile-page">
-    <nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg "  color-on-scroll="100"  id="sectionsNav">
-        <div class="container">
-            <div class="navbar-translate">
-                <a class="navbar-brand" href="../index.html">Material Kit </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    <span class="navbar-toggler-icon"></span>
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto">
-                    <li class="dropdown nav-item">
-                      <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
-                          <i class="material-icons">apps</i> Components
-                      </a>
-                      <div class="dropdown-menu dropdown-with-icons">
-                        <a href="../index.html" class="dropdown-item">
-                            <i class="material-icons">layers</i> All Components
-                        </a>
-
-                        <a href="http://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html" class="dropdown-item">
-                            <i class="material-icons">content_paste</i> Documentation
-                        </a>
-                      </div>
-                    </li>
-      				<li class="nav-item">
-      					<a class="nav-link" href="javascript:void(0)">
-      						<i class="material-icons">cloud_download</i> Download
-      					</a>
-      				</li>
-      				<li class="nav-item">
-      					<a class="nav-link" href="https://twitter.com/CreativeTim" target="_blank">
-      						<i class="fa fa-twitter"></i>
-      					</a>
-      				</li>
-      				<li class="nav-item">
-      					<a class="nav-link" href="https://www.facebook.com/CreativeTim" target="_blank">
-      						<i class="fa fa-facebook-square"></i>
-      					</a>
-      				</li>
-      				<li class="nav-item">
-      					<a class="nav-link"  href="https://www.instagram.com/CreativeTimOfficial" target="_blank">
-      						<i class="fa fa-instagram"></i>
-      					</a>
-      				</li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
     <div class="page-header header-filter" data-parallax="true" style="background-image:url('http://wallpapere.org/wp-content/uploads/2012/02/black-and-white-city-night.png');"></div>
     <div class="main main-raised">
@@ -113,7 +64,7 @@
 	                        </div>
 	                        <div class="name">
 	                            <h3 class="title">	{{ user.username }}</h3>
-								<h6>Designer</h6>
+								<h6>{{user.bio}}</h6>
 								<a href="#pablo" class="btn btn-just-icon btn-link btn-dribbble"><i class="fa fa-dribbble"></i></a>
                                 <a href="#pablo" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
                                 <a href="#pablo" class="btn btn-just-icon btn-link btn-pinterest"><i class="fa fa-pinterest"></i></a>
@@ -191,7 +142,11 @@
       			</div>
       		</div>
           </div>
-
+					{% if request.user == user %}
+						<div class="card-body">
+							<a href="{% url 'accounts:edit_profile' %}" class="card-link btn btn-danger">Edit Profile</a>
+						</div>
+					{% endif %}
 
             </div>
         </div>

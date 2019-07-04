@@ -15,7 +15,7 @@ html *{
     margin-bottom: 10px;
 }
 
-.navbar {
+/* .navbar {
     border: 0;
     border-radius: 3px;
     padding: .625rem 0;
@@ -26,17 +26,17 @@ html *{
     z-index: 1000 !important;
     transition: all 150ms ease 0s;
 
-}
-
+} */
+/*
 .navbar.navbar-transparent {
     z-index: 1030;
     background-color: transparent!important;
     box-shadow: none !important;
     padding-top: 25px;
     color: #fff;
-}
+} */
 
-.navbar .navbar-brand {
+/* .navbar .navbar-brand {
     position: relative;
     color: inherit;
     height: 50px;
@@ -45,8 +45,8 @@ html *{
     padding: .625rem 0;
     font-weight: 300;
     -webkit-font-smoothing: antialiased;
-}
-
+} */
+/*
 .navbar .navbar-nav .nav-item .nav-link:not(.btn) .material-icons {
     margin-top: -7px;
     top: 3px;
@@ -74,7 +74,7 @@ html *{
     font-size: 12px;
     border-radius: 3px;
     line-height: 20px;
-}
+} */
 
 a .material-icons {
     vertical-align: middle;
