@@ -18,13 +18,14 @@ from django.urls import path
 from django.conf.urls import url,include
 from django.contrib.auth import views as auth_views
 from posts import views
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     url(r'', include('posts.urls',namespace="posts")),
     url(r'^oauth/', include('social_django.urls',namespace = 'social')),
-
+    path('index/',TemplateView.as_view(template_name="posts/index.html")),
     # url('', include('social.apps.django_app.urls', namespace='social')),
 
     # path('accounts/', include('django.contrib.auth.urls',namespace='accounts')), # new

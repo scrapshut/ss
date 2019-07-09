@@ -9,14 +9,15 @@ from django.contrib.auth import authenticate, login, logout
 
 
 def post_list(request):
-    pst = Post.published.all()
-    query = request.GET.get('q')
-    if query:
-        pst = Post.published.filter(title=query)
-    context = {
-        'pst': pst,
-    }
-    return render(request, 'posts/post_list.html', context)
+    return render(request,'newsfeed.html')
+    # pst = Post.published.all()
+    # query = request.GET.get('q')
+    # if query:
+    #     pst = Post.published.filter(title=query)
+    # context = {
+    #     'pst': pst,
+    # }
+    # return render(request, 'posts/post_list.html', context)
 
 def post_detail(request, id):
     psts = get_object_or_404(Post, id=id)
@@ -80,3 +81,6 @@ def post_create(request):
         'form': form,
     }
     return render(request, 'posts/post_create.html', context)
+
+def index(request):
+    return render(request,'index.html') 
