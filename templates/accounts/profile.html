@@ -1,5 +1,6 @@
 
 {% load static %}
+
 <link rel="stylesheet" href="{% static 'accounts/css/profile.css' %}">
 
 <!-- <div class="card">
@@ -74,6 +75,8 @@
                 </div>
                 <div class="description text-center">
 <p>{{ user.profile.bio }}
+  {{is_following}}
+  {{following}}
 </p>
                 </div>
 				<div class="row">
@@ -152,9 +155,6 @@
         </div>
 	</div>
 
-	<footer class="footer text-center ">
-        <p>Made with <a href="https://demos.creative-tim.com/material-kit/index.html" target="_blank">Material Kit</a> by Creative Tim</p>
-    </footer>
 		<script src="{% static 'accounts/js/profile.js' %}"></script>
 
     <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>

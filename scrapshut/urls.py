@@ -27,6 +27,7 @@ urlpatterns = [
 
     # url('', include('social.apps.django_app.urls', namespace='social')),
 
+    # path('accounts/', include('django.contrib.auth.urls',namespace='accounts')), # new
 
     url(r'accounts/', include('accounts.urls',namespace="accounts")),
     url(r'notifier', include('notifier.urls',namespace="notifier"))
