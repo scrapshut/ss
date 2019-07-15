@@ -22,14 +22,14 @@ class Post(models.Model):
         ('draft', 'Draft'),
         ('published', 'Published')
     )
-    title = models.CharField(max_length=100,default='')
+    title = models.CharField(max_length=100,default='' ,null=True)
     slug = models.SlugField(max_length=120,default='')
     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="blog_posts", on_delete=models.CASCADE)
     body = models.TextField()
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='likes', blank=True)
     created = models.DateTimeField(auto_now=False,auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='publsi')
 
     def __str__(self):
         return self.title

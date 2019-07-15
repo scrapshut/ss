@@ -9,7 +9,7 @@ class PostCreateForm(forms.ModelForm):
         fields = (
             'title',
             'body',
-            'status',
+            # 'status',
         )
 
 

@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% block content %}
 <html lang="en">
-  
+
 	<head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,17 +11,16 @@
 		<meta name="robots" content="index, follow" />
 		<title>News Feed | Check what your friends are doing</title>
 
-    <!-- Stylesheets
-    ================================================= -->
+
 		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
 		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}" />
     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
     <link rel="stylesheet" href="{% static 'css/emoji.css' %}" >
-    
+
     <!--Google Font-->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i" rel="stylesheet">
-    
+
     <!--Favicon-->
     <link rel="shortcut icon" type="image/png" href="{% static 'images/fav.png' %}"/>
 	</head>
@@ -123,7 +122,7 @@
     			<div class="col-md-3 static">
             <div class="profile-card">
             	<img src="http://placehold.it/300x300" alt="user" class="profile-photo" />
-            	<h5><a href="timeline.html" class="text-white">Sarah Cruiz</a></h5>
+            	<h5><a href="timeline.html" class="text-white">{{ user.username }}</a></h5>
             	<a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 followers</a>
             </div><!--profile card ends-->
             <ul class="nav-news-feed">
@@ -149,32 +148,37 @@
               </ul>
             </div><!--chat block ends-->
           </div>
-          
-    			<div class="col-md-7">
+
+    			<div class="col-sm-7">
 
             <!-- Post Create Box
             ================================================= -->
-            <div class="create-post">
-            	<div class="row">
-            		<div class="col-md-7 col-sm-7">
-                  <div class="form-group">
-                    <img src="http://placehold.it/300x300" alt="" class="profile-photo-md" />
-                    <textarea name="texts" id="exampleTextarea" cols="30" rows="1" class="form-control" placeholder="Write what you wish"></textarea>
-                  </div>
-                </div>
-            		<div class="col-md-5 col-sm-5">
-                  <div class="tools">
-                    <ul class="publishing-tools list-inline">
-                      <li><a href="#"><i class="ion-compose"></i></a></li>
-                      <li><a href="#"><i class="ion-images"></i></a></li>
-                      <li><a href="#"><i class="ion-ios-videocam"></i></a></li>
-                      <li><a href="#"><i class="ion-map"></i></a></li>
-                    </ul>
-                    <button class="btn btn-primary pull-right">Publish</button>
-                  </div>
-                </div>
-            	</div>
-            </div><!-- Post Create Box End-->
+						<div class="create-post">
+							<div class="row">
+								<div class="col-md-7 col-sm-7">
+									<div class="form-group">
+										<img src="http://placehold.it/300x300" alt="" class="profile-photo-md" />
+										<textarea name="texts" id="exampleTextarea" cols="30" rows="1" class="form-control" placeholder="Write what you wish"></textarea>
+
+									</div>
+								</div>
+								<div class="col-md-7 col-sm-7">
+									<div class="tools">
+										<ul class="publishing-tools list-inline">
+											<li><a href="#"><i class="ion-compose"></i></a></li>
+											<li><a href="#"><i class="ion-images"></i></a></li>
+											<li><a href="#"><i class="ion-ios-videocam"></i></a></li>
+											<li><a href="#"><i class="ion-map"></i></a></li>
+										</ul>
+										<button class="btn btn-primary pull-right">Publish</button>
+									</div>
+								</div>
+								<!-- <div class="col-md-5 col-sm-5">
+
+								</div> -->
+							</div>
+						</div>
+          <!-- Post Create Box End-->
 
             <!-- Post Content
             ================================================= -->
@@ -494,15 +498,15 @@
       	</div>
       </div>
       <div class="copyright">
-        <p>Thunder Team © 2016. All rights reserved</p>
+        <p>MxION © 2019.</p>
       </div>
 		</footer>
-    
+
     <!--preloader-->
     <div id="spinner-wrapper">
       <div class="spinner"></div>
     </div>
-    
+
     <!-- Scripts
     ================================================= -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTMXfmDn0VlqWIyoOxK8997L-amWbUPiQ&callback=initMap"></script>

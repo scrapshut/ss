@@ -41,7 +41,7 @@ SECRET_KEY = '-st5jfrgd!x5%r6t9z6danja$ty56b65f=1a%2(h7$@_g0^@d2'
 # Application definition
 
 INSTALLED_APPS = [
-    'channels',
+    # 'channels',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -116,7 +116,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'scrapshut.wsgi.application'
 
-ASGI_APPLICATION = 'scrapshut.routing.application'
+# ASGI_APPLICATION = 'scrapshut.routing.application'
 
 CHANNEL_LAYERS = {
     'default': {
