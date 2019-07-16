@@ -441,7 +441,7 @@ textarea{
 }
 
 .menu ul.main-menu li ul.dropdown-menu li a:hover, .menu ul.main-menu li.open ul.dropdown-menu li a:hover{
-  color: #e6e6e6;
+  color: #05161f;
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form{
@@ -1183,10 +1183,10 @@ ul.online-users li span.online-dot{
   border-bottom: 1px solid #f1f2f2;
 }
 
-.create-post .form-group{
+/* .create-post .form-group{
   margin-bottom: 0;
   display: inline-flex;
-}
+} */
 
 .create-post .form-group .form-control{
   border: 1px solid #ccc;
@@ -2274,7 +2274,7 @@ input:checked + .slider:before{
 
 .footer-wrapper{
   padding: 50px 0;
-  float: left;
+  float: right;
   width: 100%;
 }
 

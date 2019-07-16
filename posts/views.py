@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from datetime import datetime
 from .models import Post, Comment
 from django.urls import reverse
-from .forms import PostCreateForm, UserLoginForm, UserRegistrationForm, CommentForm
+from .forms import PostCreateForm, CommentForm
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
@@ -66,21 +66,47 @@ def like_post(request,id):
     return HttpResponse('ok this is awesome')
     # return HttpResponseRedirect()
 
-
+# def post_create(request):
+#     if request.method == 'POST':
+#         if request.POST['title'] and request.POST['body']:
+#             post = Post()
+#
+#             post.title = request.POST['title']
+#             # if request.POST['url'].startswith('http://') or request.POST['url'].startswith('https://'):
+#             #     post.url = request.POST['url']
+#             # else:
+#             #     post.url = 'http://' + request.POST['url']
+#             # post.pub_date = timezone.datetime.now()
+#             post.author = request.user
+#             post.save()
+#             # return redirect('home')
+#         else:
+#             return render(request, 'newsfeed.html', {'error':'ERROR: You must include a title and a URL to create a post.'})
+#     else:
+#         return render(request, 'newsfeed.html')
 def post_create(request):
     if request.method=='POST':
         form = PostCreateForm(request.POST)
+        print(form)
         if form.is_valid():
             psts = form.save(commit=False)
             psts.author = request.user
             psts.save()
+        else:
+            print("form is not valid")
     else:
         form = PostCreateForm()
+    pst = Post.objects.all()
+    query = request.GET.get('q')
+    if query:
+        pst = Post.objects.filter(title=query)
+
 
     context = {
+        'pst':pst,
         'form': form,
     }
-    return render(request, 'posts/post_create.html', context)
+    return render(request,'posts/newsfeed.html', context)
 
 def index(request):
-    return render(request,'index.html') 
+    return render(request,'index.html')

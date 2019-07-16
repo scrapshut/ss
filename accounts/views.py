@@ -1,11 +1,11 @@
 from django.shortcuts import render
-from .forms import PostCreateForm, UserRegistrationForm
+from .forms import  UserRegistrationForm
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from datetime import datetime
 from posts.models import Post
 from django.urls import reverse
-from .forms import PostCreateForm, UserRegistrationForm
+from .forms import  UserRegistrationForm
 from django.contrib.auth import authenticate, login, logout
 from .tokens import account_activation_token
 from django.contrib.sites.shortcuts import get_current_site

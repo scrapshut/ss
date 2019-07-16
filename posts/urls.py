@@ -21,14 +21,14 @@ from posts import views
 app_name = 'posts'
 urlpatterns = [
     # path('', views.post_list, name='post_list'),
-    url(r'^$', views.post_list, name="post_list"),
-    
+    url(r'^$', views.post_create, name="post_create"),
+
     url(r'^like_post/(?P<id>\d+)/$',views.like_post, name="like_post"),
 
     url(r'^home/$', views.post_list, name="post_list"),
     url(r'^posts/(?P<id>\d+)/$',views.post_detail, name="post_detail"),
     #url(r'^posts/(?P<id>\d+)/(?P<slug>[\w-]+)/$',views.post_detail, name="post_detail"),
 
-    url(r'post_create/$', views.post_create, name="post_create"),
+    # url(r'^/$', views.post_create, name="post_create"),
 
 ]

@@ -116,7 +116,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'scrapshut.wsgi.application'
 
-# ASGI_APPLICATION = 'scrapshut.routing.application'
+ASGI_APPLICATION = 'scrapshut.routing.application'
 
 CHANNEL_LAYERS = {
     'default': {

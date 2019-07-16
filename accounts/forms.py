@@ -6,14 +6,14 @@ from .models import UserProfile
 from django.contrib.auth import authenticate, login, logout, get_user_model
 
 from .models import User
-class PostCreateForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        fields = (
-            'title',
-            'body',
-            'status',
-        )
+# class PostCreateForm(forms.ModelForm):
+#     class Meta:
+#         model = Post
+#         fields = (
+#             'title',
+#             'body',
+#             # 'status',
+#         )
 
 # class LoginForm(forms.Form):
 #     username = forms.CharField()

@@ -9,28 +9,53 @@ from django.db.models import CharField
 from django.conf import settings
 
 
-
-class PublishedManager(models.Manager):
-    def get_queryset(self):
-        return super(PublishedManager, self).get_queryset().filter(status="published")
+# class Post(models.Model):
+#     title = models.CharField(max_length=200)
+#     body = models.TextField()
+#     pub_date = models.DateTimeField()
+#     author = models.ForeignKey(User,on_delete=models.CASCADE)
+#     votes_total = models.IntegerField(default=1)
+#     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='likes', blank=True)
+#
+#
+#     def pub_date_pretty(self):
+#         return self.pub_date.strftime('%b %e %Y')
+#     def __str__(self):
+#         return self.title
+#
+#     def total_likes(self):
+#         return self.likes.count()
+#
+#     def get_absolute_url(self):
+#         return reverse(
+#             "posts:post_detail",
+#             kwargs={
+#                 "id": self.id,
+#                 # "slug": self.slug
+#
+#             }
+#         )
+# class PublishedManager(models.Manager):
+#     def get_queryset(self):
+#         return super(PublishedManager, self).get_queryset().filter(status="published")
 
 
 class Post(models.Model):
-    objects=models.Manager()
-    published = PublishedManager()
-    STATUS_CHOICES = (
-        ('draft', 'Draft'),
-        ('published', 'Published')
-    )
-    title = models.CharField(max_length=100,default='' ,null=True)
-    slug = models.SlugField(max_length=120,default='')
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="blog_posts", on_delete=models.CASCADE)
+#     objects=models.Manager()
+#     published = PublishedManager()
+#     STATUS_CHOICES = (
+#         ('draft', 'Draft'),
+#         ('published', 'Published')
+#     )
+    title = models.CharField(max_length=200)
     body = models.TextField()
+    # pub_date = models.DateTimeField()
+    author = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='likes', blank=True)
     created = models.DateTimeField(auto_now=False,auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='publsi')
-
+#     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Published')
+#
     def __str__(self):
         return self.title
 
