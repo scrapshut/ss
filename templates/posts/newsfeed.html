@@ -263,6 +263,8 @@
 									    </div>
 									    {% endfor %}
 									</div>
+									{% for reply in comment.replies.all %}
+
                   <div class="post-comment">
                     <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" />
                     <p><a href="timeline.html" class="profile-link">Diana </a><i class="em em-laughing"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
@@ -275,6 +277,8 @@
                     <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" />
                     <input type="text" class="form-control" placeholder="Post a comment">
                   </div>
+									{% endfor %}
+
                 </div>
               </div>
 							{% endfor %}
