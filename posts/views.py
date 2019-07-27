@@ -1,10 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect,JsonResponse
 from datetime import datetime
 from .models import Post, Comment
 from django.urls import reverse
 from .forms import PostCreateForm, CommentForm
 from django.contrib.auth import authenticate, login, logout
+from django.utils.safestring import mark_safe
+import json
 # Create your views here.
 
 
@@ -60,10 +62,25 @@ def like_post(request,id):
     if psts.likes.filter(id=request.user.id).exists():
         psts.likes.remove(request.user)
         is_liked = False
+        message = 'You disliked this'
     else:
         psts.likes.add(request.user)
         is_liked = True
-    return HttpResponse('ok this is awesome')
+        message = 'You liked this'
+
+    # total=psts.likes.count.all()
+    x=psts.likes.count()
+    # x=[x.count() for x in psts.likes.all()]
+    ctx = {'likes_count':x, 'message': message}
+
+    # ctx = {'likes_count':[x.as_dict() for x in psts.likes.all()], 'message': message}
+    return HttpResponse(json.dumps(ctx), content_type='application/json')
+
+    # total=mark_safe(json.dumps(list(total), ensure_ascii=False))
+    # print(total)
+    # return JsonResponse({'like_count':total})
+
+    # return HttpResponse('ok this is awesome')
     # return HttpResponseRedirect()
 
 # def post_create(request):
@@ -84,6 +101,7 @@ def like_post(request,id):
 #             return render(request, 'newsfeed.html', {'error':'ERROR: You must include a title and a URL to create a post.'})
 #     else:
 #         return render(request, 'newsfeed.html')
+
 def post_create(request):
     if request.method=='POST':
         form = PostCreateForm(request.POST)

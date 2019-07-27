@@ -9,6 +9,18 @@ class PostCreateForm(forms.ModelForm):
         model=Post
         # fields = "__all__"
         fields=('title','body')
+        widgets = {
+            'title': forms.TextInput(attrs={
+                'id': 'exampleFormControlInput1',
+                'required': True,
+                'placeholder': 'Say something...'
+            }),
+            'body': forms.TextInput(attrs={
+                'id': 'exampleFormControlTextarea1',
+                'required': True,
+                'placeholder': 'Say something...'
+            }),
+        }
         # fields=['title','body']
 
 # class UserLoginForm(forms.Form):

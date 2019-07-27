@@ -23,6 +23,8 @@ urlpatterns = [
     # path('', views.post_list, name='post_list'),
     url(r'^$', views.post_create, name="post_create"),
 
+    # url(r'^create_post/$', views.post_create, name="post_create"),
+
     url(r'^like_post/(?P<id>\d+)/$',views.like_post, name="like_post"),
 
     url(r'^home/$', views.post_list, name="post_list"),

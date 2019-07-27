@@ -208,8 +208,8 @@
 									<div class="post-text">
 										<p> {{p.body}}.</p>
 									</div>
-                  <div class="reaction">
-                    <a class="btn text-green"><i class="icon ion-thumbsup"></i> 13</a>
+                  <div class="reaction"  >
+                  <button type="button" data-href="{% url 'posts:like_post' p.id %}"> <a class="btn text-green" ><i class="icon ion-thumbsup"></i> </a></button>
                     <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>
                   </div>
                   <div class="line-divider"></div>
@@ -585,6 +585,11 @@
     <script src="{% static 'js/jquery.scrollbar.min.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
 		<script src="{% static 'js/mediapost.js' %}"></script>
+		<script src="{% static 'js/post.js' %}"></script>
+		<script src="{% static 'js/like.js' %}"></script>
+
+
+
 
   </body>
   {% endblock content %}
