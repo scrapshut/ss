@@ -51,7 +51,7 @@ def post_detail(request, id):
         'comments': comments,
         'comment_form': comment_form,
     }
-    return render(request, 'posts/post_detail.html', context)
+    return render(request, 'posts/newsfeed.html', context)
 
 
 def like_post(request,id):

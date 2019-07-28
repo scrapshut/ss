@@ -13,7 +13,7 @@ $.ajax({
     // document.getElementById('like-count').innerHTML = response.like_count;
     // $('#like_count').html(response.likes_count);
     // $('#lik').html(response.likes_count);
-    element.html(response.message)
+    element.html(response.likes_count)
 
 
     // element.html(' ' + response)

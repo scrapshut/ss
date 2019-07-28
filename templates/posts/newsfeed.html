@@ -214,22 +214,46 @@
                   </div>
                   <div class="line-divider"></div>
                   <div class="post-text">
-                    <p>. <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p>
+                    <!-- <p>. <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p> -->
                   </div>
                   <div class="line-divider"></div>
 									<div class="main-comment-section">
 									    <div class="container-fluid mt-2">
 									        <div class="form-group row">
-									            <form method="post">
-									                {% csrf_token %}
-									                <input type="hidden" name="comment_id" value="{{comment.id}}">
-									                {{comment_form.as_p}}
-									                {% if request.user.is_authenticated %}
-									                <input type="submit" value="Submit" class="btn btn-outline-success">
-									                {% else %}
-									                <input type="submit" value="Submit" class="btn btn-outline-success" disabled>
-									                {% endif %}
-									            </form>
+														<div class="post-text">
+
+
+															<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+														</div>
+														<div class="post-comment">
+															<!-- <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" /> -->
+															<!-- <p><a href="timeline.html" class="profile-link">Sarah</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p> -->
+															<!-- {{comments.count}} Comment{{comments|pluralize}} -->
+													    {% for comment in comments %}
+													    <p>{{comment.content}}</p>
+													    by {{comment.user|capfirst}}
+													        <!-- <button type="button" name="button" class="reply-btn btn btn-outline-dark btn-sm ml-2">Reply</button> -->
+																<!-- </footer> -->
+																{% endfor %}
+														</div>
+														<div class="post-comment">
+
+
+															<form method="post">
+
+															<!-- <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" /> -->
+															<input type="text" class="form-control" placeholder="Post a comment">{{comment_form.as_p}}
+
+																	{% csrf_token %}
+																	<input type="hidden" name="comment_id" value="{{comment.id}}">
+																	{% if request.user.is_authenticated %}
+																	<input type="submit" value="Submit" class="btn btn-outline-success">
+																	{% else %}
+																	<input type="submit" value="Submit" class="btn btn-outline-success" disabled>
+																	{% endif %}
+															</form>
+														</div>
+
 									        </div>
 									    </div>
 									    {{comments.count}} Comment{{comments|pluralize}}
@@ -248,7 +272,7 @@
 									                <footer class="blockquote-footer"><small>by <cite title="Source Title">{{reply.user|capfirst}}</cite></small></footer>
 									            </blockquote>
 									        {% endfor %}
-									        <div class="form-group row">
+									        <!-- <div class="form-group row">
 									            <form method="post">
 									                {% csrf_token %}
 									                <input type="hidden" name="comment_id" value="{{comment.id}}">
@@ -259,7 +283,7 @@
 									                <input type="submit" value="Submit" class="btn btn-outline-success" disabled>
 									                {% endif %}
 									                </form>
-									        </div>
+									        </div> -->
 									    </div>
 									    {% endfor %}
 									</div>
