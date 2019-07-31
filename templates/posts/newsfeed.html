@@ -9,7 +9,7 @@
 		<meta name="description" content="This is social network html5 template available in themeforest......" />
 		<meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
 		<meta name="robots" content="index, follow" />
-		<title>News Feed | Check what your friends are doing</title>
+		<title>A Strictly Student Startup Ecosystem</title>
 
 
 		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
@@ -66,6 +66,7 @@
 								 <!-- <input type="submit" value="Create" class="btn btn-primary pull-right"> -->
 
 								 <li class="btn btn-primary pull-right"><a href="{% url 'posts:post_create' %}">signup</a></li>
+
 {% endif %}
 
                 </ul>
@@ -130,12 +131,19 @@
 
           <!-- Newsfeed Common Side Bar Left
           ================================================= -->
-    			<div class="col-md-3 static">
+
+
+		<div class="col-md-3 static">
+
+				{% if request.user.is_authenticated %}
             <div class="profile-card">
             	<img src="http://placehold.it/300x300" alt="user" class="profile-photo" />
             	<h5><a href="timeline.html" class="text-white">{{ user.username }}</a></h5>
             	<a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 followers</a>
-            </div><!--profile card ends-->
+            </div>
+						{% else %}
+{% endif %}
+						<!--profile card ends-->
             <!-- <ul class="nav-news-feed">
               <li><i class="icon ion-ios-paper"></i><div><a href="newsfeed.html">My Newsfeed</a></div></li>
               <li><i class="icon ion-ios-people"></i><div><a href="newsfeed-people-nearby.html">People Nearby</a></div></li>
@@ -144,7 +152,7 @@
               <li><i class="icon ion-images"></i><div><a href="newsfeed-images.html">Images</a></div></li>
               <li><i class="icon ion-ios-videocam"></i><div><a href="newsfeed-videos.html">Videos</a></div></li>
             </ul>
-						<!--news-feed links ends--> -->
+						<!--news-feed links ends--> 
             <!-- <div id="chat-block">
               <div class="title">Chat online</div>
               <ul class="online-users list-inline">
