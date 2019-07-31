@@ -135,7 +135,7 @@ def user_login(request):
             if user:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponseRedirect(reverse('posts:post_list'))
+                    return HttpResponseRedirect(reverse('posts:post_create'))
                 else:
                     return HttpResponse("User is inactive")
             else:
@@ -150,7 +150,7 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-    return redirect('posts:post_list')
+    return redirect('posts:post_create')
 
 #
 # def register(request):

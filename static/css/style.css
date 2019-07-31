@@ -1223,7 +1223,6 @@ ul.online-users li span.online-dot{
   ==================================================*/
 
 .post-content{
-  background: #f8f8f8;
   border-radius: 4px;
   width: 100%;
   border: 1px solid #f1f2f2;
@@ -1243,6 +1242,9 @@ ul.online-users li span.online-dot{
 
 .post-content .post-container{
   padding: 20px;
+  background: #f8f8f8;
+
+
 }
 
 .post-content .post-container .post-detail{
@@ -1265,7 +1267,6 @@ ul.online-users li span.online-dot{
   display: inline-flex;
   margin: 10px auto;
   width: 100%;
-
 }
 
 .post-content .post-container .post-detail .post-comment img.profile-photo-sm{

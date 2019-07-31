@@ -11,7 +11,7 @@ import json
 
 
 def post_list(request):
-    return render(request,'newsfeed.html')
+    return render(request,'posts/newsfeed.html')
     # pst = Post.published.all()
     # query = request.GET.get('q')
     # if query:
