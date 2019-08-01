@@ -18,6 +18,13 @@ from django.urls import path
 from django.conf.urls import url,include
 from django.contrib.auth import views as auth_views
 from posts import views
+from scrapshut import settings
+# from . import views, settings
+from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+
+
 app_name = 'posts'
 urlpatterns = [
     # path('', views.post_list, name='post_list'),
@@ -37,3 +44,7 @@ urlpatterns = [
     # url(r'^/$', views.post_create, name="post_create"),
 
 ]
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# if settings.DEBUG: # new
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

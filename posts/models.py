@@ -49,7 +49,7 @@ class Post(models.Model):
 #     )
     title = models.CharField(max_length=200)
     body = models.TextField()
-    image=models.ImageField(null=True)
+    image=models.ImageField(null=True,upload_to="gallery")
     # pub_date = models.DateTimeField()
     author = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='likes', blank=True)
