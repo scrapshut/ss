@@ -7,6 +7,8 @@ from .forms import PostCreateForm, CommentForm
 from django.contrib.auth import authenticate, login, logout
 from django.utils.safestring import mark_safe
 import json
+from django.views.generic.list import ListView
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -101,7 +103,9 @@ def like_post(request,id):
 #             return render(request, 'newsfeed.html', {'error':'ERROR: You must include a title and a URL to create a post.'})
 #     else:
 #         return render(request, 'newsfeed.html')
-
+def UserView(request):
+    args = {'user':request.user}
+    return render(request,'posts/timeline.html')
 def post_create(request):
     if request.method=='POST':
         form = PostCreateForm(request.POST)
@@ -128,3 +132,23 @@ def post_create(request):
 
 def index(request):
     return render(request,'index.html')
+class UserAnnouncesList(ListView):
+    model = Post
+    template_name = 'posts/timeline.html'
+    context_object_name = 'user'
+
+    def get_queryset(self):
+        # user=self.user
+        return Post.objects.all().filter(owner=self.request.user)
+
+        # return Post.objects.filter(owner=self.request.user)
+# def UserView(self):
+#     user=self.user
+#     user = Post.objects.get(user__username=request.user.username)
+#
+#     # user=Post.objects.all().filter(user=user)
+#     print(user)
+#     context = {
+#         'user':user,
+#     }
+#     return render(request,'posts/timeline.html', context)

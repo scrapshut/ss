@@ -140,7 +140,9 @@
 				{% if request.user.is_authenticated %}
             <div class="profile-card">
             	<img src="http://placehold.it/300x300" alt="user" class="profile-photo" />
-            	<h5><a href="timeline.html" class="text-white">{{ user.username }}</a></h5>
+							<h5><a href="{% url 'posts:user_list'  %}" class="text-white">{{ user.username }}</a></h5>
+
+            	<!-- <h5><a href="{% url 'posts:user_announces_list' request.user.id %}" class="text-white">{{ user.username }}</a></h5> -->
             	<a href="#" class="text-white"><i class="ion ion-android-person-add"></i> followers:0</a>
             </div>
 						{% else %}

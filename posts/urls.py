@@ -24,6 +24,9 @@ urlpatterns = [
     url(r'^$', views.post_create, name="post_create"),
 
     # url(r'^create_post/$', views.post_create, name="post_create"),
+    url(r'users/(?P<pk>[0-9]+)/$', views.UserAnnouncesList.as_view(), name='user_announces_list'),
+
+    url(r'^user/$', views.UserView, name="user_list"),
 
     url(r'^like_post/(?P<id>\d+)/$',views.like_post, name="like_post"),
 
