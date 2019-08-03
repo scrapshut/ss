@@ -147,7 +147,19 @@ def user_login(request):
     }
     return render(request, 'posts/login.html', context)
 
-
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = UserCreationForm()
+    return render(request, 'posts/login.html', {'form': form})
 def user_logout(request):
     logout(request)
     return redirect('posts:post_create')
@@ -167,7 +179,7 @@ def user_logout(request):
 #         'form': form,
 #     }
 #     return render(request, 'posts/register.html', context)
-@csrf_exempt
+# @csrf_exempt
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
@@ -191,7 +203,7 @@ def register(request):
             return render(request, 'posts/acc_active_sent.html')
     else:
         form = UserRegistrationForm()
-    return render(request,'posts/register.html', {'form': form})
+    return render(request,'posts/login.html', {'form': form})
 
 
 def activate(request, uidb64, token):

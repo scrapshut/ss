@@ -108,11 +108,18 @@ def UserView(request):
     return render(request,'posts/timeline.html')
 def post_create(request):
     if request.method=='POST':
-        form = PostCreateForm(request.POST)
-        print(form)
+        form = PostCreateForm(request.POST,request.FILES)
+        # print(form)
+        if request.FILES:
+            print('there is a file')
+        else:
+            print('no file')    
+
         if form.is_valid():
             psts = form.save(commit=False)
             psts.author = request.user
+            # psts.image =
+            print(psts.image)
             psts.save()
         else:
             print("form is not valid")

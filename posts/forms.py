@@ -8,7 +8,7 @@ class PostCreateForm(forms.ModelForm):
     class Meta:
         model=Post
         # fields = "__all__"
-        fields=('title','body')
+        fields=('title','body','image')
         widgets = {
             'title': forms.TextInput(attrs={
                 'id': 'exampleFormControlInput1',

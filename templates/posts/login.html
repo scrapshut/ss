@@ -104,6 +104,11 @@
                 <!--Registration Form Contents-->
                 <div class="tab-content">
                   <div class="tab-pane active" id="register">
+										<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Submit" class="btn btn-outline-success">
+</form>
                     <!-- <form method="post">
                       {% csrf_token %}
 
@@ -149,44 +154,12 @@
 </form> -->
                     <h3>Register Now !!!</h3>
                     <p class="text-muted">Be cool and join today. Meet millions</p>
+<!-- <form name="registration_form" id='registration_form' class="form-inline" method="post">
+{{signup.as_p}}
+</form> -->
 
                     <!--Register Form-->
-                    <form name="registration_form" id='registration_form' class="form-inline">
-                      <div class="row">
-                        <div class="form-group col-xs-6">
-                          <label for="firstname" class="sr-only">First Name</label>
-                          {{form.username}}
-                          <!-- <input id="firstname" class="form-control input-group-lg" type="text" name="firstname" title="Enter first name" placeholder="First name" {{form.first_name}} -->
-                        </div>
-                        <!-- <div class="form-group col-xs-6">
-                          <label for="lastname" class="sr-only">Last Name</label>
-                          {{form.last_name}}
-                          <!-- <input id="lastname" class="form-control input-group-lg" type="text" name="lastname" title="Enter last name" placeholder="Last name" {{form.last_name}} -->
-                        <!-- </div> -->
-                      </div>
-                      <div class="row">
-                        <div class="form-group col-xs-12">
-                          <label for="email" class="sr-only">Email</label>
-                          {{form.password}}
-                          <!-- <input id="email" class="form-control input-group-lg" type="password" name="Email" title="Enter Email" placeholder="Your Email"/> -->
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="form-group col-xs-12">
-                          <label for="password" class="sr-only">Password</label>
-{{forms.confirm_password}}                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="form-group col-xs-12">
-                          <label for="password" class="sr-only">Password</label>
-                          <input id="password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Password"/>
-                        </div>
-                      </div>
-
-                      <input type="submit" value="Submit" class="btn btn-outline-success">
-
-
-                    </form><!--Register Now Form Ends-->
+                    <!--Register Now Form Ends-->
                     <p><a href="#">Already have an account?</a></p>
                     <button class="btn btn-primary">Register Now</button>
                   </div><!--Registration Form Contents Ends-->
@@ -198,7 +171,7 @@
 
                   <form name="Login_form" id='Login_form'  method="post">
     {% csrf_token %}
-    {{form.as_p}}
+{{form.as_p}}
     <small>
         <a href="{% url 'accounts:register' %}">Register</a>
         <a href="{% url 'accounts:password_reset' %}">Forgot Password?</a>

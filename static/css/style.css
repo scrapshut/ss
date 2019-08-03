@@ -61,6 +61,50 @@ body{
   Typography
   ==================================================*/
 
+
+
+/* navbar */
+.navbar.menu {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		line-height: 30px;
+		line-height: 30px;
+	}
+
+	.navbar.menu .navbar-brand {
+		padding-top: 0;
+		padding-bottom: 0;
+		height: auto;
+	}
+
+	.navbar.menu .navbar-brand img.logo {
+		max-height: 100%;
+	}
+
+	.navbar.menu .main-menu > li > a {
+		padding-top: 0;
+		padding-bottom: 0;
+		line-height: 30px;
+	}
+  .navbar.menu .navbar-form {
+		margin-left: 15px;
+		margin-bottom: 0;
+		margin-top: 0;
+		font-size: 0;
+	}
+
+	.navbar.menu .navbar-form * {
+		font-size: 13px;
+	}
+
+	.navbar.menu .navbar-form .form-group {
+		font-size: 0;
+	}
+
+	.navbar.menu .navbar-form input.form-control {
+		height: 30px;
+	}
+  /* navbar end */
 @font-face {
     font-family:"Agency FB";
     src: url("../fonts/agency-fb.eot") /* EOT file for IE */

@@ -183,7 +183,7 @@
 
 
             		<div class="col-md-7 col-sm-7">
-									<form method="post">
+									<form method="post" enctype="multipart/form-data">
 										{% csrf_token %}
 
 										<div class="form-group">
@@ -195,11 +195,9 @@
 											<label for="exampleFormControlTextarea1">Content</label>
 											<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" {{form.body}}</textarea>
 										</div>
-<input type="submit" value="Create" class="btn btn-primary pull-right">
 
 <!-- <button class="btn btn-primary pull-right">Publish</button> -->
 
-									 </form>
 
 
                 </div>
@@ -207,12 +205,16 @@
                   <div class="tools">
                     <ul class="publishing-tools list-inline">
                       <li><a href="#"><i class="ion-compose"></i></a></li>
-                      <li><a href="#"><i class="ion-images"></i></a></li>
+                      <li><a href='#'><i class="ion-images"></i></a></li>{{form.image}}
                       <li><a href="#"><i class="ion-ios-videocam"></i></a></li>
                       <li><a href="#"><i class="ion-map"></i></a></li>
                     </ul>
                   </div>
                 </div>
+								<input type="submit" value="Create" class="btn btn-primary pull-right">
+
+							</form>
+
             	</div>
             </div><!-- Post Create Box End-->
 
