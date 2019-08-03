@@ -36,11 +36,13 @@ from django.contrib.auth.views import LoginView
 
 from .forms import ProfileForm
 from .models import UserProfile
+from .models import User
 from django.contrib.auth import get_user_model
+
 User = get_user_model()
 
 
-from .models import UserLink
+# from .models import UserLink
 from .utils import (get_next, get_people_user_follows,
                              get_people_following_user, get_mutual_followers)
 
@@ -70,61 +72,8 @@ def friend_list(request, list_type, username):
     )
 
 
-@login_required
-def follow(request, username):
-    """
-    Adds a "following" edge from the authenticated user to the user specified
-    by the username in the URL.
-
-    """
-    user = get_object_or_404(User, username=username)
-    ul, created = UserLink.objects.get_or_create(from_user=request.user,
-        to_user=user)
-    next = get_next(request)
-    if next and next != request.path:
-        # request.user.message_set.create(
-        #     message=_('You are now following %s') % user.username)
-        return HttpResponseRedirect(next)
-    context = {
-        'other_user': user,
-        'created': created,
-    }
-    return render_to_response(
-        'followers/followed.html',
-        context,
-        context_instance=RequestContext(request)
-    )
 
 
-@login_required
-def unfollow(request, username):
-    """
-    Removes a "following" edge from the authenticated user to the user
-    specified by the username in the URL.
-
-    """
-    user = get_object_or_404(User, username=username)
-    try:
-        ul = UserLink.objects.get(from_user=request.user, to_user=user)
-        ul.delete()
-        deleted = True
-    except UserLink.DoesNotExist:
-        deleted = False
-    next = get_next(request)
-    if next and next != request.path:
-        # request.user.message_set.create(
-        #    message=_('You are no longer following %s') % user.username)
-
-        return HttpResponseRedirect(next)
-    context = {
-        'other_user': user,
-        'deleted': deleted,
-    }
-    return render_to_response(
-        'followers/unfollowed.html',
-        context,
-        context_instance=RequestContext(request)
-    )
 def user_login(request):
     if request.method=='POST':
         form = UserLoginForm(request.POST)
@@ -163,6 +112,87 @@ def signup(request):
 def user_logout(request):
     logout(request)
     return redirect('posts:post_create')
+# @login_required
+def followers(request):
+    """ Return the lists of friends user is  following and not """
+
+    # get users followed by the current_user
+    users_followed = request.user.followers.all()
+
+    # get_users not followed and exclude current_user from the list
+    unfollowed_users = User.objects.exclude(id__in=users_followed).exclude(id=request.user.id)
+    return render(request, 'posts/timeline.html', {'users_followed': users_followed, 'unfollowed_users': unfollowed_users})
+# @login_required
+# def follow_view(request, *args, **kwargs):
+#     try:
+#         follower = User.objects.get(username=request.user)
+#         following = User.objects.get(username=kwargs['username'])
+#     except User.DoesNotExist:
+#         messages.warning(
+#             request,
+#             '{} is not a registered user.'.format(kwargs['username'])
+#         )
+#         return HttpResponse("user not registered")
+#
+#     if follower == following:
+#         # messages.warning(
+#         #     request,
+#         #     'You cannot follow yourself.'
+#         # )
+#         return HttpResponse("you cannot follow yiurself")
+#     else:
+#     is_liked = False
+#     if psts.likes.filter(username__iexact='yugal').exists():
+#         psts.likes.remove(request.user)
+#         is_liked = False
+#         message = 'You disliked this'
+#     else:
+#         psts.likes.add(request.user)
+#         is_liked = True
+#         message = 'You liked this'
+#
+# @login_required
+# def unfollow_view(request, *args, **kwargs):
+#     try:
+#         follower = User.objects.get(username=request.user)
+#         following = User.objects.get(username=kwargs['username'])
+#
+#         if follower == following:
+#             messages.warning(
+#                 request,
+#                 'You cannot unfollow yourself.'
+#             )
+#         else:
+#             unfollow = Connection.objects.get(
+#                 follower=follower,
+#                 following=following
+#             )
+#
+#             unfollow.delete()
+#
+#             messages.success(
+#                 request,
+#                 'You\'ve just unfollowed {}.'.format(following.username)
+#             )
+#     except User.DoesNotExist:
+#         messages.warning(
+#             request,
+#             '{} is not a registered user.'.format(kwargs['username'])
+#         )
+#         return HttpResponseRedirect(reverse_lazy('home'))
+#     except Connection.DoesNotExist:
+#         messages.warning(
+#             request,
+#             'You didn\'t follow {0}.'.format(following.username)
+#         )
+#
+#     return HttpResponseRedirect(
+#         reverse_lazy(
+#             'accounts:profile',
+#             kwargs={'username': following.username}
+#         )
+#     )
+
 
 #
 # def register(request):
@@ -226,13 +256,26 @@ def activate(request, uidb64, token):
 
 
 @login_required
-def profile(request, username):
+def profile(request,username):
     """ view profile of user with username """
 
     user = User.objects.get(username=username)
     # check if current_user is already following the user
-    is_following = request.user.is_following(user)
-    return render(request, 'accounts/users_profile.html', {'user': user, 'is_following': is_following})
+        # context['following'] = Connection.objects.filter(
+        #     follower__username=username).count()
+        # context['followers'] = Connection.objects.filter(
+        #     following__username=username).count()
+    # name_details_count = User/objects.is_following.count()
+    # x=user.objects.filter(follower__username=username).count()
+    is_following = user.following.count()
+    is_followed= user.followers.count()
+    x=is_following
+    y=is_followed
+    # x=user.is_following.count()
+    # y=user.is_followed.count()
+    # print()
+
+    return render(request, 'posts/timeline.html', {'user': request.user, 'x': x,'y':y})
 
 
 @login_required
@@ -250,16 +293,16 @@ def edit_profile(request):
     return render(request, 'accounts/edit_profile.html', {'form': form})
 
 
-@login_required
-def followers(request):
-    """ Return the lists of friends user is  following and not """
-
-    # get users followed by the current_user
-    users_followed = request.user.followers.all()
-
-    # get_users not followed and exclude current_user from the list
-    unfollowed_users = User.objects.exclude(id__in=users_followed).exclude(id=request.user.id)
-    return render(request, 'accounts/followers.html', {'users_followed': users_followed, 'unfollowed_users': unfollowed_users})
+# @login_required
+# def followers(request):
+#     """ Return the lists of friends user is  following and not """
+#
+#     # get users followed by the current_user
+#     users_followed = request.user.followers.all()
+#
+#     # get_users not followed and exclude current_user from the list
+#     unfollowed_users = User.objects.exclude(id__in=users_followed).exclude(id=request.user.id)
+#     return render(request, 'accounts/followers.html', {'users_followed': users_followed, 'unfollowed_users': unfollowed_users})
 
 
 @login_required
@@ -267,11 +310,11 @@ def follow(request, username):
     """ Add user with username to current user's following list """
 
     request.user.followers.add(User.objects.get(username=username))
-    return redirect('accounts:followers')
+    return redirect('accounts:profile')
 
 
 def unfollow(request, username):
     """ Remove username from user's following list """
 
     request.user.followers.remove(User.objects.get(username=username))
-    return redirect('accounts:followers')
+    return redirect('accounts:profile')

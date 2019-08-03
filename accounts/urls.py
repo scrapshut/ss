@@ -53,9 +53,15 @@ urlpatterns = [
     url(r'^password-reset/complete/$',
         auth_views.PasswordResetCompleteView.as_view(template_name="posts/password_reset_complete.html"),
         name='password_reset_complete'),
-    path('followers/', views.followers, name='followers'),
+    # path('followers/', views.followers, name='followers'),
     path('my-profile/edit/', views.edit_profile, name='edit_profile'),
     path('profile/<username>/', views.profile, name='profile'),
     path('users/follow/<username>/', views.follow, name='follow'),
     path('users/unfollow/<username>/', views.unfollow, name='unfollow'),
+    path('followers/', views.followers, name='followers'),
+    url(r'^user/$', views.profile, name="user_list"),
+
+
+    # url(r'^(?P<username>[-\w]{5,30})/follow/$',views.follow_view,name='follow'),
+    # url(r'^(?P<username>[-\w]{5,30})/unfollow/$',views.unfollow_view,name='unfollow'),
 ]

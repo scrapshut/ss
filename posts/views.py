@@ -11,7 +11,7 @@ from django.views.generic.list import ListView
 from django.contrib.auth.models import User
 # Create your views here.
 
-
+#
 def post_list(request):
     return render(request,'posts/newsfeed.html')
     # pst = Post.published.all()
@@ -103,9 +103,9 @@ def like_post(request,id):
 #             return render(request, 'newsfeed.html', {'error':'ERROR: You must include a title and a URL to create a post.'})
 #     else:
 #         return render(request, 'newsfeed.html')
-def UserView(request):
-    args = {'user':request.user}
-    return render(request,'posts/timeline.html')
+# def UserView(request):
+#     args = {'user':request.user}
+#     return render(request,'posts/timeline.html')
 def post_create(request):
     if request.method=='POST':
         form = PostCreateForm(request.POST,request.FILES)
@@ -113,7 +113,7 @@ def post_create(request):
         if request.FILES:
             print('there is a file')
         else:
-            print('no file')    
+            print('no file')
 
         if form.is_valid():
             psts = form.save(commit=False)
@@ -137,8 +137,7 @@ def post_create(request):
     }
     return render(request,'posts/newsfeed.html', context)
 
-def index(request):
-    return render(request,'index.html')
+
 class UserAnnouncesList(ListView):
     model = Post
     template_name = 'posts/timeline.html'

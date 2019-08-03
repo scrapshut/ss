@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from .models import UserLink
+# from .models import UserLink
 
 
 def get_next(request):
