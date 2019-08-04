@@ -43,7 +43,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index-register.html"><img src="{% static 'images/wb_168.png' %}" alt="logo" /></a>
+            <a class="navbar-brand" href="index-register.html"><img src="{% static 'images/wb_black168.png' %}" alt="logo" /></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -140,7 +140,7 @@
 				{% if request.user.is_authenticated %}
             <div class="profile-card">
             	<img src="http://placehold.it/300x300" alt="user" class="profile-photo" />
-							<h5><a href="{% url 'accounts:user_login'  %}" class="text-white">{{ user.username }}</a></h5>
+							<h5><a href="{% url 'accounts:profile' user.username  %}" class="text-white">{{ user.username }}</a></h5>
 
             	<!-- <h5><a href="{% url 'posts:user_announces_list' request.user.id %}" class="text-white">{{ user.username }}</a></h5> -->
             	<a href="#" class="text-white"><i class="ion ion-android-person-add"></i> followers:0</a>
@@ -238,7 +238,7 @@
                 <div class="post-detail">
                   <div class="user-info">
 										<h3>{{p.title}}</h3>
-                    <h6><a href="timeline.html" class="profile-link">{{p.author}}</a> <span class="following">following</span></h6>
+                    <h6><a href="{% url 'accounts:profile' p.author  %}" class="profile-link">{{p.author}}</a> <span class="following">following</span></h6>
                     <p class="text-muted">Published a photo about 3 mins ago</p>
                   </div>
 									<div class="post-text">

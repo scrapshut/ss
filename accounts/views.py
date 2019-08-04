@@ -76,21 +76,21 @@ def user_login(request):
     if request.method=='POST':
         #user_registration logic goes here!!!!
         if request.POST.get('submit') == 'Register':
-              
-                
+
+
                 username     = request.POST['username']
                 email        = request.POST['email']
                 password1    = request.POST['password1']
                 password2    = request.POST['password2']
-                 
+
                 if password1==password2:
                     if User.objects.filter(username=username).exists():
-                        
+
                         return HttpResponse("Username already exists")
                     elif User.objects.filter(email=email).exists():
-                        
+
                         return HttpResponse("an account with this mail already exists")
-                    else:    
+                    else:
                         user = User.objects.create_user(username=username,email=email,password=password1)
                         user.save();
                         print('User created successfully')
@@ -101,11 +101,11 @@ def user_login(request):
                         login(request, user)
                         return redirect('posts:post_create')
 
-                else: 
+                else:
                     print('password mismatch')
                     return HttpResponse("password mismatch")
                 return redirect('accounts:user_login')
-               
+
         else:
             #user_login logic goes here
             form = UserLoginForm(request.POST)
@@ -120,14 +120,14 @@ def user_login(request):
                                 else:
                                     return HttpResponse("User is inactive")
                             else:
-            
+
                                 return HttpResponse("User is None")
             else:
                  form = UserLoginForm()
                  context = {
                         'form': form,
                     }
-                 return render(request, 'posts/login.html', context)                    
+                 return render(request, 'posts/login.html', context)
     else:
                     form = UserLoginForm()
                     context = {
@@ -371,7 +371,7 @@ def follow(request, username):
     """ Add user with username to current user's following list """
 
     request.user.followers.add(User.objects.get(username=username))
-    return redirect('accounts:profile')
+    return redirect('accounts:profile',username)
 
 
 def unfollow(request, username):
