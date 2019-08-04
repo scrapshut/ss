@@ -92,7 +92,11 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="profile-info">
-                  <img src="http://placehold.it/300x300" alt="" class="img-responsive profile-photo" />
+									{% if user.profile.picture %}
+                  <img src="{{ user.profile.picture.url }}" alt="nice" class="img-responsive profile-photo" />
+									{% else %}
+									<p>no image</p>
+									{% endif %}
                   <h3>{{user.username}}</h3>
                   <p class="text-muted">following:{{x}}</p>
                 </div>

@@ -148,18 +148,14 @@ from django.contrib.auth.models import User
 #                                     )
 
 class User(AbstractUser):
-    """ Custom User Model
-        In cases where we just want to add a new field to the already existing user, subclass
-        the `AbstractUser` and add the required fields
-        Ensure to update the `settings.AUTH_USER_MODEL` value
-    """
+
     followers = models.ManyToManyField("self", blank=True)
     following = models.ManyToManyField("self",blank=True)
 
     def is_following(self, user):
         return user in self.followers.all()
     def is_followed(self,user):
-        return user in self.following.all()    
+        return user in self.following.all()
 
 
 
@@ -170,6 +166,8 @@ class UserProfile(models.Model):
                                 related_name='profile',
                                 verbose_name='other Details')
     picture = models.ImageField(upload_to='profile_pictures', blank=True, null=True)
+    timeline = models.ImageField(upload_to='timeline_pictures', blank=True, null=True)
+
     website = models.URLField(blank=True)
     bio = models.TextField(blank=True)
     phone = models.CharField(max_length=11, blank=True)

@@ -336,7 +336,7 @@ def profile(request,username):
     # y=user.is_followed.count()
     # print()
 
-    return render(request, 'posts/timeline.html', {'user': request.user, 'x': x,'y':y})
+    return render(request, 'posts/timeline.html', {'user': user, 'x': x,'y':y})
 
 
 @login_required
