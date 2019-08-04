@@ -72,43 +72,104 @@ def friend_list(request, list_type, username):
     )
 
 
-
-
 def user_login(request):
     if request.method=='POST':
-        form = UserLoginForm(request.POST)
-        if form.is_valid():
-            user_name = request.POST['username']
-            pass_word = request.POST['password']
-            user = authenticate(username=user_name, password=pass_word)
-            if user:
-                if user.is_active:
-                    login(request, user)
-                    return HttpResponseRedirect(reverse('posts:post_create'))
-                else:
-                    return HttpResponse("User is inactive")
-            else:
-                return HttpResponse("User is None")
-    else:
-        form = UserLoginForm()
-    context = {
-        'form': form,
-    }
-    return render(request, 'posts/login.html', context)
+        #user_registration logic goes here!!!!
+        if request.POST.get('submit') == 'Register':
+              
+                
+                username     = request.POST['username']
+                email        = request.POST['email']
+                password1    = request.POST['password1']
+                password2    = request.POST['password2']
+                 
+                if password1==password2:
+                    if User.objects.filter(username=username).exists():
+                        
+                        return HttpResponse("Username already exists")
+                    elif User.objects.filter(email=email).exists():
+                        
+                        return HttpResponse("an account with this mail already exists")
+                    else:    
+                        user = User.objects.create_user(username=username,email=email,password=password1)
+                        user.save();
+                        print('User created successfully')
+                          #authentication code
+                        user = authenticate(username=username,
+                                    password=password1,
+                                    )
+                        login(request, user)
+                        return redirect('posts:post_create')
 
-def signup(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('home')
+                else: 
+                    print('password mismatch')
+                    return HttpResponse("password mismatch")
+                return redirect('accounts:user_login')
+               
+        else:
+            #user_login logic goes here
+            form = UserLoginForm(request.POST)
+            if form.is_valid():
+                            user_name = request.POST['username']
+                            pass_word = request.POST['password']
+                            user = authenticate(username=user_name, password=pass_word)
+                            if user:
+                                if user.is_active:
+                                    login(request, user)
+                                    return HttpResponseRedirect(reverse('posts:post_create'))
+                                else:
+                                    return HttpResponse("User is inactive")
+                            else:
+            
+                                return HttpResponse("User is None")
+            else:
+                 form = UserLoginForm()
+                 context = {
+                        'form': form,
+                    }
+                 return render(request, 'posts/login.html', context)                    
     else:
-        form = UserCreationForm()
-    return render(request, 'posts/login.html', {'form': form})
+                    form = UserLoginForm()
+                    context = {
+                        'form': form,
+                    }
+                    return render(request, 'posts/login.html', context)
+
+# def user_login(request):
+#     if request.method=='POST':
+#         form = UserLoginForm(request.POST)
+#         if form.is_valid():
+#             user_name = request.POST['username']
+#             pass_word = request.POST['password']
+#             user = authenticate(username=user_name, password=pass_word)
+#             if user:
+#                 if user.is_active:
+#                     login(request, user)
+#                     return HttpResponseRedirect(reverse('posts:post_create'))
+#                 else:
+#                     return HttpResponse("User is inactive")
+#             else:
+#                 return HttpResponse("User is None")
+#     else:
+#         form = UserLoginForm()
+#     context = {
+#         'form': form,
+#     }
+#     return render(request, 'posts/login.html', context)
+
+# def signup(request):
+#     if request.method == 'POST':
+#         form = UserCreationForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             username = form.cleaned_data.get('username')
+#             raw_password = form.cleaned_data.get('password1')
+#             user = authenticate(username=username, password=raw_password)
+#             login(request, user)
+#             return redirect('home')
+#     else:
+#         form = UserCreationForm()
+#     return render(request, 'posts/login.html', {'form': form})
 def user_logout(request):
     logout(request)
     return redirect('posts:post_create')

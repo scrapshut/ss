@@ -78,8 +78,15 @@
           </div><!-- /.container -->
         </nav>
       </header>
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
       <!-- Landing Page Contents
       ================================================= -->
+
       <div id="lp-register">
         <div class="container wrapper">
           <div class="row">
@@ -104,11 +111,6 @@
                 <!--Registration Form Contents-->
                 <div class="tab-content">
                   <div class="tab-pane active" id="register">
-										<form method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Submit" class="btn btn-outline-success">
-</form>
                     <!-- <form method="post">
                       {% csrf_token %}
 
@@ -154,14 +156,35 @@
 </form> -->
                     <h3>Register Now !!!</h3>
                     <p class="text-muted">Be cool and join today. Meet millions</p>
-<!-- <form name="registration_form" id='registration_form' class="form-inline" method="post">
-{{signup.as_p}}
-</form> -->
 
-                    <!--Register Form-->
-                    <!--Register Now Form Ends-->
-                    <p><a href="#">Already have an account?</a></p>
-                    <button class="btn btn-primary">Register Now</button>
+                   
+                    <form method="post">
+                       {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" id="username" name="username" required="required" placeholder="Enter username">
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type="password" class="form-control" minlength="6" id="exampleInputPassword1" name="password1" placeholder="Password" required>
+                                    <small id="passHelp" class="form-text text-muted">Password must be greater than 6 characters in length</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword2">Confirm Password</label>
+                                    <input type="password" class="form-control" minlength="6"  id="exampleInputPassword2" name="password2" required="required" placeholder="Enter Confirm Password">
+                                </div>
+                               
+                               {% comment %} <input type='submit' name='submit' value='sign_up'> {% endcomment %}
+                               <input type='submit'  name='submit' class='btn btn-primary' value='Register'>
+                       </form>
+                    
                   </div><!--Registration Form Contents Ends-->
 
                   <!--Login-->
@@ -171,9 +194,9 @@
 
                   <form name="Login_form" id='Login_form'  method="post">
     {% csrf_token %}
-{{form.as_p}}
+    {{form.as_p}}
     <small>
-        <a href="{% url 'accounts:register' %}">Register</a>
+        <a href="{% url 'accounts:user_login' %}">Register</a>
         <a href="{% url 'accounts:password_reset' %}">Forgot Password?</a>
     </small>
     <br>
@@ -230,6 +253,7 @@
         </div>
       </div>
 
+
       <!--preloader-->
       <div id="spinner-wrapper">
         <div class="spinner"></div>
@@ -243,9 +267,9 @@
       <script src="{% static 'js/jquery.appear.min.js' %}"></script>
       <script src="{% static 'js/jquery.incremental-counter.js' %}"></script>
       <script src="{% static 'js/script.js' %}"></script>
-
-
-
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      
       <script src="{% static 'js/jquery.sticky-kit.min.js' %}"></script>
       <script src="{% static 'js/jquery.scrollbar.min.js' %}"></script>
       <script src="{% static 'js/script.js' %}"></script>

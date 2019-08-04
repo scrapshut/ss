@@ -30,8 +30,8 @@ from .models import User
 #                 raise forms.ValidationError("User is no longer active.")
 #         return super(LoginForm, self).clean(*args, **kwargs)
 class UserLoginForm(forms.Form):
-    username=forms.CharField(label="",widget=forms.TextInput(attrs={'type': 'text', 'id':'register-form-name', 'name':'register-form-name', 'value':"", 'class':'form-control'}))
-    password=forms.CharField(label="",widget=forms.TextInput(attrs={'type': 'password', 'id':'register-form-name', 'name':'register-form-name', 'value':"", 'class':'form-control'}))
+    username=forms.CharField(label="",widget=forms.TextInput(attrs={'type': 'text', 'id':'register-form-name', 'name':'register-form-name', 'value':"", 'class':'form-control','placeholder': 'Username'}))
+    password=forms.CharField(label="",widget=forms.TextInput(attrs={'type': 'password', 'id':'register-form-name', 'name':'register-form-name', 'value':"", 'class':'form-control','placeholder': 'Enter the Password'}))
 
 
 class UserRegistrationForm(forms.ModelForm):
