@@ -316,7 +316,7 @@ def activate(request, uidb64, token):
 
 
 
-@login_required
+# @login_required
 def profile(request,username):
     """ view profile of user with username """
 
