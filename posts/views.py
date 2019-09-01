@@ -106,18 +106,41 @@ def like_post(request,id):
 # def UserView(request):
 #     args = {'user':request.user}
 #     return render(request,'posts/timeline.html')
+# @login_required
+def comment(request, pk):
+   post= get_object_or_404(Post, pk=pk)
+   if request.method == 'POST':
+       form = CommentForm(request.POST)
+       if form.is_valid():
+          comment = form.save(commit=False)
+          comment.post= post
+          comment.user = request.user
+          comment.save()
+          # return redirect('post_detail', slug=post.slug)
+   else:
+       form = CommentForm()
+   return render(request, 'posts/newsfeed.html', {'comment':comment})
 def post_create(request):
     if request.method=='POST':
         form = PostCreateForm(request.POST,request.FILES)
+        comment=CommentForm(request.POST)
+        # comment=
         # print(form)
         if request.FILES:
             print('there is a file')
         else:
             print('no file')
 
-        if form.is_valid():
+        # if re
+        if form.is_valid() or comment.is_valid():
+            # c=comment.save(commit=False)
             psts = form.save(commit=False)
             psts.author = request.user
+            # if comment:
+            #     psts.comment.add(comment)
+            # else:
+            #     print('there is nothing')
+
             # psts.image =
             print(psts.image)
             psts.save()
@@ -134,6 +157,9 @@ def post_create(request):
     context = {
         'pst':pst,
         'form': form,
+        # 'comment':comment
+
+
     }
     return render(request,'posts/newsfeed.html', context)
 

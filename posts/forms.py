@@ -49,9 +49,9 @@ class PostCreateForm(forms.ModelForm):
 #
 #         return confirm_password
 
-
+# class
 class CommentForm(forms.ModelForm):
-    content = forms.CharField(label="", widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Its easy to pass comment, but yeah you can!', 'rows': '2', 'cols': '50'}))
+    # content = forms.CharField(label="", widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Its easy to pass comment, but yeah you can!', 'rows': '2', 'cols': '50'}))
     class Meta:
         model = Comment
-        fields = ('content',)
+        fields = ('user','content')

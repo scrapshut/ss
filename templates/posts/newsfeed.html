@@ -228,7 +228,6 @@
               <div class="post-container">
 								{% if p.image %}
 								<p>image</p>
-
 								<img src="{{ p.image.url }}" alt="post-" class="img-responsive post-image" />
 						<!-- <img src="http://placehold.it/2000x1300" alt="post-image" class="img-responsive post-image" /> -->
 						{% else %}
@@ -244,7 +243,9 @@
 									<div class="post-text">
 										<p> {{p.body}}.</p>
 									</div>
-
+									{% for cmt in p.post.all %}
+{{cmt.user}}
+{% endfor %}
 
                   <div class="reaction"  >
                   <button type="button" data-href="{% url 'posts:like_post' p.id %}"> <a class="btn text-green" ><i class="icon ion-thumbsup"></i> </a></button>
@@ -267,12 +268,18 @@
 															<!-- <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" /> -->
 															<!-- <p><a href="timeline.html" class="profile-link">Sarah</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p> -->
 															<!-- {{comments.count}} Comment{{comments|pluralize}} -->
-													    {% for comment in comments %}
-													    <p>{{comment.content}}</p>
-													    by {{comment.user|capfirst}}
-													        <!-- <button type="button" name="button" class="reply-btn btn btn-outline-dark btn-sm ml-2">Reply</button> -->
+															<!-- {% for pst in psts %} -->
+													    {% for comment in p.comments.all %}
+															{% if comment %}
+													    <p>{{ comment.content }}</p>
+													    by {{ comment.user|capfirst }}
+															{% else %}
+															<p>no comment</p>
+															{% endif %}
+													         <!-- <button type="button" name="button" class="reply-btn btn btn-outline-dark btn-sm ml-2">Reply</button> -->
 																<!-- </footer> -->
 																{% endfor %}
+																									{% endfor %}
 														</div>
 														<div class="post-comment">
 

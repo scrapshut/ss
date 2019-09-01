@@ -49,6 +49,7 @@ class Post(models.Model):
 #     )
     title = models.CharField(max_length=200)
     body = models.TextField()
+    # comment=models.ManyToManyField(Comment)
     image=models.ImageField(null=True,upload_to="gallery",blank=True)
     # pub_date = models.DateTimeField()
     author = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
@@ -76,19 +77,15 @@ class Post(models.Model):
     # def get_absolute_url(self):
     #     return reverse("posts:post_detail", args=[self.id,self.slug])
 
+class Comment(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='user')
+    content = models.TextField(max_length=160, default="")
+    post=models.ForeignKey(Post,on_delete=models.CASCADE,null=True,related_name='post')
+    # timestamp = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return '{}'.format(str(self.user.username))
 @receiver(pre_save, sender=Post)
 def pre_save_slug(sender, **kwargs):
     slug=slugify(kwargs['instance'].title)
     kwargs['instance'].slug=slug
-
-
-class Comment(models.Model):
-    psts = models.ForeignKey(Post,on_delete=models.CASCADE,related_name='com')
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='use')
-    reply = models.ForeignKey('Comment', null=True, related_name="replies", on_delete=models.CASCADE)
-    content = models.TextField(max_length=160, default="")
-    timestamp = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return '{}-{}'.format(self.psts.title, str(self.user.username))
