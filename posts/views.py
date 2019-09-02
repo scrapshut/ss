@@ -109,21 +109,23 @@ def like_post(request,id):
 # @login_required
 def comment(request, pk):
    post= get_object_or_404(Post, pk=pk)
+   pst=Post.objects.all()
    if request.method == 'POST':
-       form = CommentForm(request.POST)
-       if form.is_valid():
-          comment = form.save(commit=False)
+       comment = CommentForm(request.POST)
+       if comment.is_valid():
+          comment = comment.save(commit=False)
           comment.post= post
           comment.user = request.user
           comment.save()
           # return redirect('post_detail', slug=post.slug)
    else:
        form = CommentForm()
-   return render(request, 'posts/newsfeed.html', {'comment':comment})
+   return render(request, 'posts/newsfeed.html', {'comment':comment,'pst':pst})
 def post_create(request):
     if request.method=='POST':
         form = PostCreateForm(request.POST,request.FILES)
         comment=CommentForm(request.POST)
+        post=Post.objects.get(id=pk)
         # comment=
         # print(form)
         if request.FILES:
@@ -144,10 +146,16 @@ def post_create(request):
             # psts.image =
             print(psts.image)
             psts.save()
+            if comment.is_valid():
+                comment = comment.save(commit=False)
+                comment.post= post
+                comment.user = request.user
+                comment.save()
         else:
             print("form is not valid")
     else:
         form = PostCreateForm()
+        comment=CommentForm()
     pst = Post.objects.all()
     query = request.GET.get('q')
     if query:
@@ -157,7 +165,7 @@ def post_create(request):
     context = {
         'pst':pst,
         'form': form,
-        # 'comment':comment
+        'comment':comment
 
 
     }

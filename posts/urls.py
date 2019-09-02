@@ -29,6 +29,7 @@ app_name = 'posts'
 urlpatterns = [
     # path('', views.post_list, name='post_list'),
     url(r'^$', views.post_create, name="post_create"),
+    # path('comment/<int:pk>/', views.comment, name='comments'),
 
     # url(r'^create_post/$', views.post_create, name="post_create"),
     url(r'users/(?P<pk>[0-9]+)/$', views.UserAnnouncesList.as_view(), name='user_announces_list'),
