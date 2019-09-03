@@ -125,7 +125,7 @@ def post_create(request):
     if request.method=='POST':
         form = PostCreateForm(request.POST,request.FILES)
         comment=CommentForm(request.POST)
-        post=Post.objects.get(id=pk)
+        # post=Post.objects.get(id=pk)
         # comment=
         # print(form)
         if request.FILES:
@@ -146,11 +146,11 @@ def post_create(request):
             # psts.image =
             print(psts.image)
             psts.save()
-            if comment.is_valid():
-                comment = comment.save(commit=False)
-                comment.post= post
-                comment.user = request.user
-                comment.save()
+            # if comment.is_valid():
+            #     comment = comment.save(commit=False)
+            #     comment.post= post
+            #     comment.user = request.user
+            #     comment.save()
         else:
             print("form is not valid")
     else:
