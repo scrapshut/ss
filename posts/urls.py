@@ -27,8 +27,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 app_name = 'posts'
 urlpatterns = [
-    url(r'^home/$', views.post_create,name='post_create'),
-    url(r'^home/(?P<pk>\w+)/$', views.post_create,name='post_create'),
+    url(r'^$', views.post_create,name='post_create'),
+    url(r'^/(?P<pk>\w+)/$', views.post_create,name='post_create'),
     # path('', views.post_create, name='post_create'),
     # url(r'^$', views.post_create, name="post_create"),
     # url(r'^$/(?P<pk>\d+)/$', views.post_create, name="post_create"),

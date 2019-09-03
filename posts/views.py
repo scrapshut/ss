@@ -146,8 +146,7 @@ def post_create(request,pk=''):
                     psts = form.save(commit=False)
                     psts.author = request.user
                     psts.save()
-                    return HttpResponseRedirect("")
-
+                    return redirect('posts:post_create')
             if comment:
                 if comment.is_valid():
                     c=comment.save(commit=False)
@@ -155,7 +154,10 @@ def post_create(request,pk=''):
                     comment.post= pos
                     comment.user = request.user
                     comment.save()
-                    return HttpResponseRedirect("")
+                    return redirect('posts:post_create')
+
+                    # return HttpResponseRedirect(reverse('post_create'))
+                    # return redirect("views.post_create")
                 else:
                     print("something is wrong")
         # else:
