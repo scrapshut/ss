@@ -127,8 +127,10 @@ def post_create(request,pk=''):
         form = PostCreateForm(request.POST,request.FILES)
         comment=CommentForm(request.POST)
         # print(comment)
-        # if pk:
-        pos=Post.objects.get(pk=pk)
+        if pk:
+
+            pos=Post.objects.get(pk=pk)
+            return pos
 
             # print(pos)
         # comment=
@@ -140,26 +142,29 @@ def post_create(request,pk=''):
 
         # if re
         # if form.is_valid() or comment.is_valid():
-            if form:
-                if form.is_valid():
+        if form:
+            if form.is_valid():
 
-                    psts = form.save(commit=False)
-                    psts.author = request.user
-                    psts.save()
-                    return redirect('posts:post_create')
-            if comment:
-                if comment.is_valid():
-                    c=comment.save(commit=False)
-                    comment = c
-                    comment.post= pos
-                    comment.user = request.user
-                    comment.save()
-                    return redirect('posts:post_create')
+                psts = form.save(commit=False)
+                psts.author = request.user
+                print(psts.image)
+                psts.save()
+                return redirect('posts:post_create')
+            else:
+                print("form is not valid")
+        if comment:
+            if comment.is_valid():
+                c=comment.save(commit=False)
+                comment = c
+                comment.post= pos
+                comment.user = request.user
+                comment.save()
+                return redirect('posts:post_create')
 
                     # return HttpResponseRedirect(reverse('post_create'))
                     # return redirect("views.post_create")
-                else:
-                    print("something is wrong")
+            else:
+                print("something is wrong")
         # else:
         #     print("form is not valid")
     else:
