@@ -27,9 +27,14 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 app_name = 'posts'
 urlpatterns = [
-    # path('', views.post_list, name='post_list'),
-    url(r'^$', views.post_create, name="post_create"),
-    # path('comment/<int:pk>/', views.comment, name='comments'),
+    url(r'^home/$', views.post_create,name='post_create'),
+    url(r'^home/(?P<pk>\w+)/$', views.post_create,name='post_create'),
+    # path('', views.post_create, name='post_create'),
+    # url(r'^$', views.post_create, name="post_create"),
+    # url(r'^$/(?P<pk>\d+)/$', views.post_create, name="post_create"),
+    # path(r'$/<int:pk>/', views.post_create, name="post_create"),
+
+    path('comment/<int:pk>/', views.comment, name='comments'),
 
     # url(r'^create_post/$', views.post_create, name="post_create"),
     url(r'users/(?P<pk>[0-9]+)/$', views.UserAnnouncesList.as_view(), name='user_announces_list'),

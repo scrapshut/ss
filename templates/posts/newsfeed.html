@@ -243,9 +243,10 @@
 									<div class="post-text">
 										<p> {{p.body}}.</p>
 									</div>
-									{% for cmt in p.post.all %}
+									<!-- {% for cmt in p.post.all %}
 {{cmt.user}}
-{% endfor %}
+{% endfor %} -->
+
 
 
                   <div class="reaction"  >
@@ -265,39 +266,32 @@
 
 															<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 														</div>
-														<div class="post-comment">
+														<!-- <div class="post-comment"> -->
 															<!-- <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" /> -->
 															<!-- <p><a href="timeline.html" class="profile-link">Sarah</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p> -->
 															<!-- {{comments.count}} Comment{{comments|pluralize}} -->
 															<!-- {% for pst in psts %} -->
-													    {% for comment in p.comments.all %}
+													    <!-- {% for comment in p.comments.all %}
 															{% if comment %}
 													    <p>{{ comment.content }}</p>
 													    by {{ comment.user|capfirst }}
 															{% else %}
 															<p>no comment</p>
 															{% endif %}
-													         <!-- <button type="button" name="button" class="reply-btn btn btn-outline-dark btn-sm ml-2">Reply</button> -->
-																<!-- </footer> -->
+
 																{% endfor %}
-																									{% endfor %}
-														</div>
+																									{% endfor %} -->
+														<!-- </div> -->
 														<div class="post-comment">
-
-
-															<form method="post">
-
-															<!-- <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" /> -->
-															<input type="text" class="form-control" placeholder="Post a comment">{{comment_form.as_p}}
-
-																	{% csrf_token %}
-																	<input type="hidden" name="comment_id" value="{{comment.id}}">
-																	{% if request.user.is_authenticated %}
-																	<input type="submit" value="Submit" class="btn btn-outline-success">
-																	{% else %}
-																	<input type="submit" value="Submit" class="btn btn-outline-success" disabled>
-																	{% endif %}
+															<form method="POST">
+																<!-- {{comment.as_p}} -->
+																{% for cmt_post in comment %}
+																	<input type="text" class="form-control" placeholder="Post a comment">{{cmt.content}}
+															<input type="submit" value="Create" class="btn btn-primary pull-right">
+															{% endfor %}
 															</form>
+
+													
 														</div>
 
 									        </div>

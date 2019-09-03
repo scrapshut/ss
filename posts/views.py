@@ -120,12 +120,15 @@ def comment(request, pk):
           # return redirect('post_detail', slug=post.slug)
    else:
        form = CommentForm()
-   return render(request, 'posts/newsfeed.html', {'comment':comment,'pst':pst})
-def post_create(request):
+   return render(request, 'posts/newsfeed.html', {'comment':comment})
+def post_create(request,pk=''):
+    print(pk)
     if request.method=='POST':
         form = PostCreateForm(request.POST,request.FILES)
-        # comment=CommentForm(request.POST)
-        # post=Post.objects.get(id=pk)
+        comment=CommentForm(request.POST)
+        # print(comment)
+        post=Post.objects.get(id=pk)
+        print(post)
         # comment=
         # print(form)
         if request.FILES:
@@ -134,27 +137,27 @@ def post_create(request):
             print('no file')
 
         # if re
-        if form.is_valid() or comment.is_valid():
-            # c=comment.save(commit=False)
-            psts = form.save(commit=False)
-            psts.author = request.user
-            # if comment:
-            #     psts.comment.add(comment)
-            # else:
-            #     print('there is nothing')
+        # if form.is_valid() or comment.is_valid():
+            if form:
+                if form.is_valid():
 
-            # psts.image =
-            print(psts.image)
-            psts.save()
-            # return HttpResponseRedirect(reverse("posts.views.post_create"))
-            return HttpResponseRedirect("") 
-            # if comment.is_valid():
-            #     comment = comment.save(commit=False)
-            #     comment.post= post
-            #     comment.user = request.user
-            #     comment.save()
-        else:
-            print("form is not valid")
+                    psts = form.save(commit=False)
+                    psts.author = request.user
+                    psts.save()
+                    return HttpResponseRedirect("")
+
+            if comment:
+                if comment.is_valid():
+                    c=comment.save(commit=False)
+                    comment = c
+                    comment.post= post
+                    comment.user = request.user
+                    comment.save()
+                    return HttpResponseRedirect("")
+                else:
+                    print("something is wrong")
+        # else:
+        #     print("form is not valid")
     else:
         form = PostCreateForm()
         comment=CommentForm()
