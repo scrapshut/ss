@@ -124,7 +124,7 @@ def comment(request, pk):
 def post_create(request):
     if request.method=='POST':
         form = PostCreateForm(request.POST,request.FILES)
-        comment=CommentForm(request.POST)
+        # comment=CommentForm(request.POST)
         # post=Post.objects.get(id=pk)
         # comment=
         # print(form)
@@ -146,6 +146,8 @@ def post_create(request):
             # psts.image =
             print(psts.image)
             psts.save()
+            # return HttpResponseRedirect(reverse("posts.views.post_create"))
+            return HttpResponseRedirect("") 
             # if comment.is_valid():
             #     comment = comment.save(commit=False)
             #     comment.post= post
