@@ -130,7 +130,7 @@ def post_create(request,pk=''):
         if pk:
 
             pos=Post.objects.get(pk=pk)
-            return pos
+            
 
             # print(pos)
         # comment=
