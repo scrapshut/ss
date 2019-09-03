@@ -127,8 +127,10 @@ def post_create(request,pk=''):
         form = PostCreateForm(request.POST,request.FILES)
         comment=CommentForm(request.POST)
         # print(comment)
-        post=Post.objects.get(id=pk)
-        print(post)
+        # if pk:
+        pos=Post.objects.get(pk=pk)
+
+            # print(pos)
         # comment=
         # print(form)
         if request.FILES:
@@ -150,7 +152,7 @@ def post_create(request,pk=''):
                 if comment.is_valid():
                     c=comment.save(commit=False)
                     comment = c
-                    comment.post= post
+                    comment.post= pos
                     comment.user = request.user
                     comment.save()
                     return HttpResponseRedirect("")
