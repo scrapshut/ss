@@ -240,19 +240,17 @@
                     <h6><a href="{% url 'accounts:profile' p.author  %}" class="profile-link">{{p.author}}</a> <span class="following">following</span></h6>
                     <p class="text-muted">Published a photo about 3 mins ago</p>
                   </div>
-									<div class="post-text">
+									<!-- <div class="post-text">
 										<p> {{p.body}}.</p>
-									</div>
-									{% for cmt in p.post.all %}
-{{cmt.user}}
-{% endfor %}
+									</div> -->
+
+
 
 
                   <div class="reaction"  >
                   <button type="button" data-href="{% url 'posts:like_post' p.id %}"> <a class="btn text-green" ><i class="icon ion-thumbsup"></i> </a></button>
                     <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>
                   </div>
-                  <div class="line-divider"></div>
                   <div class="post-text">
                     <!-- <p>. <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p> -->
                   </div>
@@ -263,11 +261,21 @@
 														<div class="post-text">
 
 
-															<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+															<p>{{p.body}}.</p>
 														</div>
-														<!-- <div class="post-comment">
+														<div class="line-divider"></div>
+														{% for cmt in p.post.all %}
+														<div class="post-comment">
+				                     <!-- <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" /> -->
+				                     <p><a href=# class="profile-link">{{cmt.user}}</a>{{cmt.content}}</p>
 
-														</div> -->
+													 </div>
+													 {% endfor %}
+
+														<div class="post-comment">
+
+						{{cmt.user}}
+														</div>
 														<div class="post-comment">
 
 															<form method="post" action="{% url 'posts:post_create' p.pk %}">
